@@ -1,0 +1,98 @@
+grammar org.xtext.function.Function with org.eclipse.xtext.xbase.Xbase
+// jêzyk dziedzinowy do rozwi¹zywania prostych obliczeñ matamatycznych, oparty na jêzykach funkcyjnych o sk³adni opartej
+// g³ównie na jêzyku scheme
+generate function "http://www.xtext.org/function/Function"
+
+Model:
+	elements+=Start*;
+
+Start:
+	'('ExpWithDefinitions')'
+;
+
+ExpWithDefinitions:
+	 Exp | VariableDefinition | FunctionDefinition
+;
+Exp:
+	=>MathFunction | Expression
+;
+// operacje matematyczne 
+Expression :
+	 (op=ArithmeticOperation left=TerminalExpression)? (right+=TerminalExpression)+ 
+;
+TerminalExpression:
+	('(' Exp ')' | variable=[VariableDefinition|NAME] | value=DOUBLE | parameter=[Parameter|PARAMNAME])
+;
+ArithmeticOperation:
+	'+'|'-'|'/'|'*'
+;
+// funkcje matematyczne
+MathFunction:
+	MathTwoArg | MathOneArg
+;
+MathTwoArg:
+	(function=TwoArgFunction left=TerminalExpression)? right=TerminalExpression
+;
+MathOneArg:
+	function=OneArgFunction left=TerminalExpression
+;
+
+TwoArgFunction:
+	'max'|'min' | 'pow'
+;
+OneArgFunction:
+	'sqrt'| 'log'
+;
+VariableDefinition:
+	'define' name=NAME number=DOUBLE
+;
+FunctionDefinition:
+	'define' '(' name=NAME parameters+=Parameter+ ')' exp=Exp
+;
+Parameter:
+	name=PARAMNAME
+;
+
+terminal DOUBLE:
+	('0'..'9')+'.'('0'..'9')+
+;
+terminal NAME:
+	('a'..'z'|'A'..'Z')*
+;
+terminal PARAMNAME:
+	'_'('a'..'z'|'A'..'Z')('a'..'z'|'A'..'Z')*
+;
+
+
+/* 
+	
+Element:
+	Expression | Num
+;
+
+Num:
+	value=INT
+;
+	
+Expression:
+	'(' Operation  ')';
+	
+Operation:
+	 op=XAdditiveExpression left=Element right=Element 
+;
+
+Function:
+	'define' Designation 	
+;
+
+Designation:
+	Name | Variable
+;
+Name:
+	'(' name=STRING arg=Element ')'
+;
+Variable:
+	name=STRING
+;
+
+*/

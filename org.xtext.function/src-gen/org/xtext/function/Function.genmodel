@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.xtext.function/src-gen" editDirectory="/org.xtext.function.edit/src"
+    editorDirectory="/org.xtext.function.editor/src" modelPluginID="org.xtext.function"
+    forceOverwrite="true" modelName="Function" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.xtext.function.edit"
+    editorPluginID="org.xtext.function.editor" runtimeVersion="2.8">
+  <genPackages prefix="Function" basePackage="org.xtext.function" disposableProviderFactory="true"
+      ecorePackage="Function.ecore#/">
+    <genClasses ecoreClass="Function.ecore#//Model">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Function.ecore#//Model/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Function.ecore#//Start"/>
+    <genClasses ecoreClass="Function.ecore#//ExpWithDefinitions"/>
+    <genClasses ecoreClass="Function.ecore#//Exp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Function.ecore#//Exp/left"/>
+    </genClasses>
+    <genClasses ecoreClass="Function.ecore#//Expression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Function.ecore#//Expression/op"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Function.ecore#//Expression/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Function.ecore#//TerminalExpression">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Function.ecore#//TerminalExpression/variable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Function.ecore#//TerminalExpression/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Function.ecore#//TerminalExpression/parameter"/>
+    </genClasses>
+    <genClasses ecoreClass="Function.ecore#//MathFunction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Function.ecore#//MathFunction/function"/>
+    </genClasses>
+    <genClasses ecoreClass="Function.ecore#//MathTwoArg">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Function.ecore#//MathTwoArg/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Function.ecore#//MathOneArg"/>
+    <genClasses ecoreClass="Function.ecore#//VariableDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Function.ecore#//VariableDefinition/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Function.ecore#//VariableDefinition/number"/>
+    </genClasses>
+    <genClasses ecoreClass="Function.ecore#//FunctionDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Function.ecore#//FunctionDefinition/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Function.ecore#//FunctionDefinition/parameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Function.ecore#//FunctionDefinition/exp"/>
+    </genClasses>
+    <genClasses ecoreClass="Function.ecore#//Parameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Function.ecore#//Parameter/name"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
