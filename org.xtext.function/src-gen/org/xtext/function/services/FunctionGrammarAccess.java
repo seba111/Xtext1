@@ -423,15 +423,17 @@ public class FunctionGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cParametersAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cParametersParameterParserRuleCall_3_0 = (RuleCall)cParametersAssignment_3.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cExpAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cExpExpParserRuleCall_5_0 = (RuleCall)cExpAssignment_5.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cExpAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cExpExpParserRuleCall_6_0 = (RuleCall)cExpAssignment_6.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//FunctionDefinition:
 		//
-		//	"define" "(" name=NAME parameters+=Parameter+ ")" exp=Exp;
+		//	"define" "(" name=NAME parameters+=Parameter+ ")" "(" exp=Exp ")";
 		public ParserRule getRule() { return rule; }
 
-		//"define" "(" name=NAME parameters+=Parameter+ ")" exp=Exp
+		//"define" "(" name=NAME parameters+=Parameter+ ")" "(" exp=Exp ")"
 		public Group getGroup() { return cGroup; }
 
 		//"define"
@@ -455,11 +457,17 @@ public class FunctionGrammarAccess extends AbstractGrammarElementFinder {
 		//")"
 		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
 
+		//"("
+		public Keyword getLeftParenthesisKeyword_5() { return cLeftParenthesisKeyword_5; }
+
 		//exp=Exp
-		public Assignment getExpAssignment_5() { return cExpAssignment_5; }
+		public Assignment getExpAssignment_6() { return cExpAssignment_6; }
 
 		//Exp
-		public RuleCall getExpExpParserRuleCall_5_0() { return cExpExpParserRuleCall_5_0; }
+		public RuleCall getExpExpParserRuleCall_6_0() { return cExpExpParserRuleCall_6_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_7() { return cRightParenthesisKeyword_7; }
 	}
 
 	public class ParameterElements extends AbstractParserRuleElementFinder {
@@ -686,7 +694,7 @@ public class FunctionGrammarAccess extends AbstractGrammarElementFinder {
 
 	//FunctionDefinition:
 	//
-	//	"define" "(" name=NAME parameters+=Parameter+ ")" exp=Exp;
+	//	"define" "(" name=NAME parameters+=Parameter+ ")" "(" exp=Exp ")";
 	public FunctionDefinitionElements getFunctionDefinitionAccess() {
 		return (pFunctionDefinition != null) ? pFunctionDefinition : (pFunctionDefinition = new FunctionDefinitionElements());
 	}

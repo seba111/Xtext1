@@ -808,25 +808,33 @@ ruleFunctionDefinition returns [EObject current=null]
     {
     	newLeafNode(otherlv_4, grammarAccess.getFunctionDefinitionAccess().getRightParenthesisKeyword_4());
     }
+	otherlv_5='(' 
+    {
+    	newLeafNode(otherlv_5, grammarAccess.getFunctionDefinitionAccess().getLeftParenthesisKeyword_5());
+    }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getFunctionDefinitionAccess().getExpExpParserRuleCall_5_0()); 
+	        newCompositeNode(grammarAccess.getFunctionDefinitionAccess().getExpExpParserRuleCall_6_0()); 
 	    }
-		lv_exp_5_0=ruleExp		{
+		lv_exp_6_0=ruleExp		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getFunctionDefinitionRule());
 	        }
        		set(
        			$current, 
        			"exp",
-        		lv_exp_5_0, 
+        		lv_exp_6_0, 
         		"Exp");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))
+)	otherlv_7=')' 
+    {
+    	newLeafNode(otherlv_7, grammarAccess.getFunctionDefinitionAccess().getRightParenthesisKeyword_7());
+    }
+)
 ;
 
 

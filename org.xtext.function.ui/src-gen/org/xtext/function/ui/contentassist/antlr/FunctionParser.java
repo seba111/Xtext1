@@ -243,7 +243,7 @@ public class FunctionParser extends AbstractContentAssistParser {
 					put(grammarAccess.getVariableDefinitionAccess().getNumberAssignment_2(), "rule__VariableDefinition__NumberAssignment_2");
 					put(grammarAccess.getFunctionDefinitionAccess().getNameAssignment_2(), "rule__FunctionDefinition__NameAssignment_2");
 					put(grammarAccess.getFunctionDefinitionAccess().getParametersAssignment_3(), "rule__FunctionDefinition__ParametersAssignment_3");
-					put(grammarAccess.getFunctionDefinitionAccess().getExpAssignment_5(), "rule__FunctionDefinition__ExpAssignment_5");
+					put(grammarAccess.getFunctionDefinitionAccess().getExpAssignment_6(), "rule__FunctionDefinition__ExpAssignment_6");
 					put(grammarAccess.getParameterAccess().getNameAssignment(), "rule__Parameter__NameAssignment");
 					put(grammarAccess.getXAssignmentAccess().getFeatureAssignment_0_1(), "rule__XAssignment__FeatureAssignment_0_1");
 					put(grammarAccess.getXAssignmentAccess().getValueAssignment_0_3(), "rule__XAssignment__ValueAssignment_0_3");

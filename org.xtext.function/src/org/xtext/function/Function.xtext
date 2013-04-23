@@ -14,7 +14,7 @@ ExpWithDefinitions:
 	 Exp | VariableDefinition | FunctionDefinition
 ;
 Exp:
-	=>MathFunction | Expression
+	=>MathFunction | Expression 
 ;
 // operacje matematyczne 
 Expression :
@@ -47,7 +47,7 @@ VariableDefinition:
 	'define' name=NAME number=DOUBLE
 ;
 FunctionDefinition:
-	'define' '(' name=NAME parameters+=Parameter+ ')' exp=Exp
+	'define' '(' name=NAME parameters+=Parameter+ ')' '(' exp=Exp ')'
 ;
 Parameter:
 	name=PARAMNAME

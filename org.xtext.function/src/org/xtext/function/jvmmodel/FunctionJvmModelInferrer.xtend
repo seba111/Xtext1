@@ -9,13 +9,16 @@ import org.xtext.function.function.Expression
 import org.xtext.function.function.TerminalExpression
 import org.xtext.function.function.MathFunction
 import org.xtext.function.function.VariableDefinition
+import org.xtext.function.function.FunctionDefinition
 import org.xtext.function.function.MathTwoArg
 import org.xtext.function.function.MathOneArg
 import org.xtext.function.function.Start
+import org.xtext.function.function.Parameter
 import org.eclipse.xtext.common.types.util.TypeReferences
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference
 import org.eclipse.xtext.common.types.JvmVisibility
+import org.eclipse.emf.ecore.EObject
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
@@ -64,6 +67,32 @@ class FunctionJvmModelInferrer extends AbstractModelInferrer {
 		acceptor.accept(element.toClass("Main")).initializeLater([
 			val param = newTypeRef(typeof(String)).addArrayTypeDimension
 			
+			for(FunctionDefinition fd: element.eAllOfType(typeof(FunctionDefinition))){
+				members += fd.toMethod(fd.name,newTypeRef("double"))[
+				for(Parameter par: fd.parameters){
+					parameters += toParameter(par.name,element.newTypeRef('double'))
+				}
+				// gdy w wyrazeniu z cia³a funkcji wystêpuje paramter to jest jakiœ nullException w checku (name?)
+				body = [
+					append(
+						'''
+							«FOR ex : fd.eAllOfType(typeof(Expression))»
+																
+								«IF ex.eContainer.toString.contains("FunctionDefinition")»
+									double tmp«addOneToCommandNumber()» = «checkType(ex.left)» 
+									«FOR el : ex.right»
+										«ex.op» «checkType(el)» 
+									«ENDFOR»
+								«ENDIF»						
+							«ENDFOR»
+							;return tmp«numberOfCommand»;
+						'''
+					)
+				]
+					
+				]
+			}
+			
 			members += toMethod("main",element.newTypeRef(Void::TYPE))[
 				setStatic(true)
 				parameters += toParameter("args",param)
@@ -71,33 +100,7 @@ class FunctionJvmModelInferrer extends AbstractModelInferrer {
 					append( 	//Nastepnie to samo ze wszystkimi elementami Math
 						'''
 						«FOR st : element.eAllOfType(typeof(Start))»
-							«FOR ex : st.eAllOfType(typeof(Expression))»
-								«IF !ex.eContainer.toString.contains("Expression") && !ex.eContainer.toString.contains("MathTwoArg") 
-								&& !ex.eContainer.toString.contains("MathOneArg")» 
-									double tmp«addOneToCommandNumber()» = «checkType(ex.left)» 
-									«FOR el : ex.right»
-										«ex.op» «checkType(el)» 
-									«ENDFOR»
-									;System.out.println(tmp«numberOfCommand»);
-								«ENDIF»
-							«ENDFOR»
-							«FOR ex : st.eAllOfType(typeof(MathOneArg))»
-								«IF !ex.eContainer.toString.contains("Expression") && !ex.eContainer.toString.contains("MathTwoArg") 
-								&& !ex.eContainer.toString.contains("MathOneArg") » 
-									double tmp«addOneToCommandNumber()» = «checkType(ex)» 
-									;System.out.println(tmp«numberOfCommand»);
-								«ENDIF»
-							«ENDFOR»
-							«FOR ex : st.eAllOfType(typeof(MathTwoArg))»
-								«IF !ex.eContainer.toString.contains("Expression") && !ex.eContainer.toString.contains("MathTwoArg") 
-								&& !ex.eContainer.toString.contains("MathOneArg") » 
-									double tmp«addOneToCommandNumber()» = «checkType(ex)» 
-									;System.out.println(tmp«numberOfCommand»);
-								«ENDIF»
-							«ENDFOR»
-							«FOR ex : st.eAllOfType(typeof(VariableDefinition))»
-								double «ex.name» = «ex.number»;
-							«ENDFOR»
+							«readExpressions(st)»
 						«ENDFOR»
 						'''
 						
@@ -106,6 +109,37 @@ class FunctionJvmModelInferrer extends AbstractModelInferrer {
 			]
 			
 		])
+   		}
+   		def protected readExpressions(EObject eob){
+   			'''
+   				«FOR ex : eob.eAllOfType(typeof(Expression))»
+					«IF !ex.eContainer.toString.contains("Expression") && !ex.eContainer.toString.contains("MathTwoArg") 
+					&& !ex.eContainer.toString.contains("MathOneArg")&& !ex.eContainer.toString.contains("FunctionDefinition")» 
+						double tmp«addOneToCommandNumber()» = «checkType(ex.left)» 
+						«FOR el : ex.right»
+							«ex.op» «checkType(el)» 
+						«ENDFOR»
+						;System.out.println(tmp«numberOfCommand»);
+					«ENDIF»
+				«ENDFOR»
+				«FOR ex : eob.eAllOfType(typeof(MathOneArg))»
+					«IF !ex.eContainer.toString.contains("Expression") && !ex.eContainer.toString.contains("MathTwoArg") 
+					&& !ex.eContainer.toString.contains("MathOneArg")&& !ex.eContainer.toString.contains("FunctionDefinition") » 
+						double tmp«addOneToCommandNumber()» = «checkType(ex)» 
+						;System.out.println(tmp«numberOfCommand»);
+					«ENDIF»
+				«ENDFOR»
+				«FOR ex : eob.eAllOfType(typeof(MathTwoArg))»
+					«IF !ex.eContainer.toString.contains("Expression") && !ex.eContainer.toString.contains("MathTwoArg") 
+					&& !ex.eContainer.toString.contains("MathOneArg")&& !ex.eContainer.toString.contains("FunctionDefinition") » 
+						double tmp«addOneToCommandNumber()» = «checkType(ex)» 
+						;System.out.println(tmp«numberOfCommand»);
+					«ENDIF»
+				«ENDFOR»
+				«FOR ex : eob.eAllOfType(typeof(VariableDefinition))»
+					double «ex.name» = «ex.number»;
+				«ENDFOR»
+			'''	
    		}
    		def protected checkType(Object ob)
    		{				
@@ -140,8 +174,10 @@ class FunctionJvmModelInferrer extends AbstractModelInferrer {
 	   			'''	   				
 	   				«IF ob.value != null»
 	   					«ob.value»
-	   				«ELSE»
+	   				«ELSEIF ob.variable != null»
 	   					«ob.variable.name»
+	   				«ELSEIF ob.parameter != null»
+	   					«ob.parameter.name»
 	   				«ENDIF»
 	   			'''
 	   		}
