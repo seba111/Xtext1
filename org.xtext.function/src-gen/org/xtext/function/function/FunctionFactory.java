@@ -131,6 +131,87 @@ public interface FunctionFactory extends EFactory
   Parameter createParameter();
 
   /**
+   * Returns a new object of class '<em>Call</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Call</em>'.
+   * @generated
+   */
+  FunctionCall createFunctionCall();
+
+  /**
+   * Returns a new object of class '<em>Param Values</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Param Values</em>'.
+   * @generated
+   */
+  ParamValues createParamValues();
+
+  /**
+   * Returns a new object of class '<em>Exp In Fun</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Exp In Fun</em>'.
+   * @generated
+   */
+  ExpInFun createExpInFun();
+
+  /**
+   * Returns a new object of class '<em>Expression In Fun</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expression In Fun</em>'.
+   * @generated
+   */
+  ExpressionInFun createExpressionInFun();
+
+  /**
+   * Returns a new object of class '<em>Terminal Expression In Fun</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Terminal Expression In Fun</em>'.
+   * @generated
+   */
+  TerminalExpressionInFun createTerminalExpressionInFun();
+
+  /**
+   * Returns a new object of class '<em>Math Function In Fun</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Math Function In Fun</em>'.
+   * @generated
+   */
+  MathFunctionInFun createMathFunctionInFun();
+
+  /**
+   * Returns a new object of class '<em>Math Two Arg In Fun</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Math Two Arg In Fun</em>'.
+   * @generated
+   */
+  MathTwoArgInFun createMathTwoArgInFun();
+
+  /**
+   * Returns a new object of class '<em>Math One Arg In Fun</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Math One Arg In Fun</em>'.
+   * @generated
+   */
+  MathOneArgInFun createMathOneArgInFun();
+
+  /**
+   * Returns a new object of class '<em>If Statement</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>If Statement</em>'.
+   * @generated
+   */
+  IfStatement createIfStatement();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

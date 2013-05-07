@@ -10,18 +10,27 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.xtext.function.function.Exp;
+import org.xtext.function.function.ExpInFun;
 import org.xtext.function.function.ExpWithDefinitions;
 import org.xtext.function.function.Expression;
+import org.xtext.function.function.ExpressionInFun;
+import org.xtext.function.function.FunctionCall;
 import org.xtext.function.function.FunctionDefinition;
 import org.xtext.function.function.FunctionFactory;
 import org.xtext.function.function.FunctionPackage;
+import org.xtext.function.function.IfStatement;
 import org.xtext.function.function.MathFunction;
+import org.xtext.function.function.MathFunctionInFun;
 import org.xtext.function.function.MathOneArg;
+import org.xtext.function.function.MathOneArgInFun;
 import org.xtext.function.function.MathTwoArg;
+import org.xtext.function.function.MathTwoArgInFun;
 import org.xtext.function.function.Model;
+import org.xtext.function.function.ParamValues;
 import org.xtext.function.function.Parameter;
 import org.xtext.function.function.Start;
 import org.xtext.function.function.TerminalExpression;
+import org.xtext.function.function.TerminalExpressionInFun;
 import org.xtext.function.function.VariableDefinition;
 
 /**
@@ -115,6 +124,69 @@ public class FunctionPackageImpl extends EPackageImpl implements FunctionPackage
    * @generated
    */
   private EClass parameterEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass functionCallEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass paramValuesEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass expInFunEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass expressionInFunEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass terminalExpressionInFunEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass mathFunctionInFunEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass mathTwoArgInFunEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass mathOneArgInFunEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass ifStatementEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -304,7 +376,7 @@ public class FunctionPackageImpl extends EPackageImpl implements FunctionPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getTerminalExpression_Parameter()
+  public EReference getTerminalExpression_Functioncall()
   {
     return (EReference)terminalExpressionEClass.getEStructuralFeatures().get(2);
   }
@@ -454,6 +526,256 @@ public class FunctionPackageImpl extends EPackageImpl implements FunctionPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getFunctionCall()
+  {
+    return functionCallEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getFunctionCall_Func()
+  {
+    return (EReference)functionCallEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getFunctionCall_Paramvalues()
+  {
+    return (EReference)functionCallEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getParamValues()
+  {
+    return paramValuesEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getParamValues_Value()
+  {
+    return (EAttribute)paramValuesEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getParamValues_Variable()
+  {
+    return (EReference)paramValuesEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getExpInFun()
+  {
+    return expInFunEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExpInFun_Left()
+  {
+    return (EReference)expInFunEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getExpressionInFun()
+  {
+    return expressionInFunEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getExpressionInFun_Op()
+  {
+    return (EAttribute)expressionInFunEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExpressionInFun_Right()
+  {
+    return (EReference)expressionInFunEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTerminalExpressionInFun()
+  {
+    return terminalExpressionInFunEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTerminalExpressionInFun_Value()
+  {
+    return (EAttribute)terminalExpressionInFunEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTerminalExpressionInFun_Parameter()
+  {
+    return (EReference)terminalExpressionInFunEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getMathFunctionInFun()
+  {
+    return mathFunctionInFunEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getMathFunctionInFun_Function()
+  {
+    return (EAttribute)mathFunctionInFunEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getMathTwoArgInFun()
+  {
+    return mathTwoArgInFunEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMathTwoArgInFun_Right()
+  {
+    return (EReference)mathTwoArgInFunEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getMathOneArgInFun()
+  {
+    return mathOneArgInFunEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getIfStatement()
+  {
+    return ifStatementEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getIfStatement_Iftype()
+  {
+    return (EAttribute)ifStatementEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getIfStatement_Left()
+  {
+    return (EReference)ifStatementEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getIfStatement_Right()
+  {
+    return (EReference)ifStatementEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getIfStatement_Whentrue()
+  {
+    return (EReference)ifStatementEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getIfStatement_Whenfalse()
+  {
+    return (EReference)ifStatementEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public FunctionFactory getFunctionFactory()
   {
     return (FunctionFactory)getEFactoryInstance();
@@ -496,7 +818,7 @@ public class FunctionPackageImpl extends EPackageImpl implements FunctionPackage
     terminalExpressionEClass = createEClass(TERMINAL_EXPRESSION);
     createEReference(terminalExpressionEClass, TERMINAL_EXPRESSION__VARIABLE);
     createEAttribute(terminalExpressionEClass, TERMINAL_EXPRESSION__VALUE);
-    createEReference(terminalExpressionEClass, TERMINAL_EXPRESSION__PARAMETER);
+    createEReference(terminalExpressionEClass, TERMINAL_EXPRESSION__FUNCTIONCALL);
 
     mathFunctionEClass = createEClass(MATH_FUNCTION);
     createEAttribute(mathFunctionEClass, MATH_FUNCTION__FUNCTION);
@@ -517,6 +839,40 @@ public class FunctionPackageImpl extends EPackageImpl implements FunctionPackage
 
     parameterEClass = createEClass(PARAMETER);
     createEAttribute(parameterEClass, PARAMETER__NAME);
+
+    functionCallEClass = createEClass(FUNCTION_CALL);
+    createEReference(functionCallEClass, FUNCTION_CALL__FUNC);
+    createEReference(functionCallEClass, FUNCTION_CALL__PARAMVALUES);
+
+    paramValuesEClass = createEClass(PARAM_VALUES);
+    createEAttribute(paramValuesEClass, PARAM_VALUES__VALUE);
+    createEReference(paramValuesEClass, PARAM_VALUES__VARIABLE);
+
+    expInFunEClass = createEClass(EXP_IN_FUN);
+    createEReference(expInFunEClass, EXP_IN_FUN__LEFT);
+
+    expressionInFunEClass = createEClass(EXPRESSION_IN_FUN);
+    createEAttribute(expressionInFunEClass, EXPRESSION_IN_FUN__OP);
+    createEReference(expressionInFunEClass, EXPRESSION_IN_FUN__RIGHT);
+
+    terminalExpressionInFunEClass = createEClass(TERMINAL_EXPRESSION_IN_FUN);
+    createEAttribute(terminalExpressionInFunEClass, TERMINAL_EXPRESSION_IN_FUN__VALUE);
+    createEReference(terminalExpressionInFunEClass, TERMINAL_EXPRESSION_IN_FUN__PARAMETER);
+
+    mathFunctionInFunEClass = createEClass(MATH_FUNCTION_IN_FUN);
+    createEAttribute(mathFunctionInFunEClass, MATH_FUNCTION_IN_FUN__FUNCTION);
+
+    mathTwoArgInFunEClass = createEClass(MATH_TWO_ARG_IN_FUN);
+    createEReference(mathTwoArgInFunEClass, MATH_TWO_ARG_IN_FUN__RIGHT);
+
+    mathOneArgInFunEClass = createEClass(MATH_ONE_ARG_IN_FUN);
+
+    ifStatementEClass = createEClass(IF_STATEMENT);
+    createEAttribute(ifStatementEClass, IF_STATEMENT__IFTYPE);
+    createEReference(ifStatementEClass, IF_STATEMENT__LEFT);
+    createEReference(ifStatementEClass, IF_STATEMENT__RIGHT);
+    createEReference(ifStatementEClass, IF_STATEMENT__WHENTRUE);
+    createEReference(ifStatementEClass, IF_STATEMENT__WHENFALSE);
   }
 
   /**
@@ -557,6 +913,12 @@ public class FunctionPackageImpl extends EPackageImpl implements FunctionPackage
     mathOneArgEClass.getESuperTypes().add(this.getMathFunction());
     variableDefinitionEClass.getESuperTypes().add(this.getExpWithDefinitions());
     functionDefinitionEClass.getESuperTypes().add(this.getExpWithDefinitions());
+    functionCallEClass.getESuperTypes().add(this.getStart());
+    expInFunEClass.getESuperTypes().add(this.getTerminalExpressionInFun());
+    expressionInFunEClass.getESuperTypes().add(this.getExpInFun());
+    mathFunctionInFunEClass.getESuperTypes().add(this.getExpInFun());
+    mathTwoArgInFunEClass.getESuperTypes().add(this.getMathFunctionInFun());
+    mathOneArgInFunEClass.getESuperTypes().add(this.getMathFunctionInFun());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -576,7 +938,7 @@ public class FunctionPackageImpl extends EPackageImpl implements FunctionPackage
     initEClass(terminalExpressionEClass, TerminalExpression.class, "TerminalExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getTerminalExpression_Variable(), this.getVariableDefinition(), null, "variable", null, 0, 1, TerminalExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getTerminalExpression_Value(), ecorePackage.getEString(), "value", null, 0, 1, TerminalExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getTerminalExpression_Parameter(), this.getParameter(), null, "parameter", null, 0, 1, TerminalExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTerminalExpression_Functioncall(), this.getFunctionCall(), null, "functioncall", null, 0, 1, TerminalExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(mathFunctionEClass, MathFunction.class, "MathFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMathFunction_Function(), ecorePackage.getEString(), "function", null, 0, 1, MathFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -593,10 +955,44 @@ public class FunctionPackageImpl extends EPackageImpl implements FunctionPackage
     initEClass(functionDefinitionEClass, FunctionDefinition.class, "FunctionDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getFunctionDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, FunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFunctionDefinition_Parameters(), this.getParameter(), null, "parameters", null, 0, -1, FunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getFunctionDefinition_Exp(), this.getExp(), null, "exp", null, 0, 1, FunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFunctionDefinition_Exp(), this.getExpInFun(), null, "exp", null, 0, 1, FunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(parameterEClass, Parameter.class, "Parameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getParameter_Name(), ecorePackage.getEString(), "name", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(functionCallEClass, FunctionCall.class, "FunctionCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getFunctionCall_Func(), this.getFunctionDefinition(), null, "func", null, 0, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFunctionCall_Paramvalues(), this.getParamValues(), null, "paramvalues", null, 0, -1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(paramValuesEClass, ParamValues.class, "ParamValues", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getParamValues_Value(), ecorePackage.getEString(), "value", null, 0, 1, ParamValues.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getParamValues_Variable(), this.getVariableDefinition(), null, "variable", null, 0, 1, ParamValues.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(expInFunEClass, ExpInFun.class, "ExpInFun", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExpInFun_Left(), this.getTerminalExpressionInFun(), null, "left", null, 0, 1, ExpInFun.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(expressionInFunEClass, ExpressionInFun.class, "ExpressionInFun", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getExpressionInFun_Op(), ecorePackage.getEString(), "op", null, 0, 1, ExpressionInFun.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExpressionInFun_Right(), this.getTerminalExpressionInFun(), null, "right", null, 0, -1, ExpressionInFun.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(terminalExpressionInFunEClass, TerminalExpressionInFun.class, "TerminalExpressionInFun", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getTerminalExpressionInFun_Value(), ecorePackage.getEString(), "value", null, 0, 1, TerminalExpressionInFun.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTerminalExpressionInFun_Parameter(), this.getParameter(), null, "parameter", null, 0, 1, TerminalExpressionInFun.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(mathFunctionInFunEClass, MathFunctionInFun.class, "MathFunctionInFun", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getMathFunctionInFun_Function(), ecorePackage.getEString(), "function", null, 0, 1, MathFunctionInFun.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(mathTwoArgInFunEClass, MathTwoArgInFun.class, "MathTwoArgInFun", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getMathTwoArgInFun_Right(), this.getTerminalExpressionInFun(), null, "right", null, 0, 1, MathTwoArgInFun.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(mathOneArgInFunEClass, MathOneArgInFun.class, "MathOneArgInFun", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(ifStatementEClass, IfStatement.class, "IfStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getIfStatement_Iftype(), ecorePackage.getEString(), "iftype", null, 0, 1, IfStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getIfStatement_Left(), this.getExp(), null, "left", null, 0, 1, IfStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getIfStatement_Right(), this.getExp(), null, "right", null, 0, 1, IfStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getIfStatement_Whentrue(), this.getExp(), null, "whentrue", null, 0, 1, IfStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getIfStatement_Whenfalse(), this.getExp(), null, "whenfalse", null, 0, 1, IfStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

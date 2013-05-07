@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.xtext.function.function.TerminalExpression#getVariable <em>Variable</em>}</li>
  *   <li>{@link org.xtext.function.function.TerminalExpression#getValue <em>Value</em>}</li>
- *   <li>{@link org.xtext.function.function.TerminalExpression#getParameter <em>Parameter</em>}</li>
+ *   <li>{@link org.xtext.function.function.TerminalExpression#getFunctioncall <em>Functioncall</em>}</li>
  * </ul>
  * </p>
  *
@@ -77,29 +77,29 @@ public interface TerminalExpression extends EObject
   void setValue(String value);
 
   /**
-   * Returns the value of the '<em><b>Parameter</b></em>' reference.
+   * Returns the value of the '<em><b>Functioncall</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Parameter</em>' reference isn't clear,
+   * If the meaning of the '<em>Functioncall</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Parameter</em>' reference.
-   * @see #setParameter(Parameter)
-   * @see org.xtext.function.function.FunctionPackage#getTerminalExpression_Parameter()
-   * @model
+   * @return the value of the '<em>Functioncall</em>' containment reference.
+   * @see #setFunctioncall(FunctionCall)
+   * @see org.xtext.function.function.FunctionPackage#getTerminalExpression_Functioncall()
+   * @model containment="true"
    * @generated
    */
-  Parameter getParameter();
+  FunctionCall getFunctioncall();
 
   /**
-   * Sets the value of the '{@link org.xtext.function.function.TerminalExpression#getParameter <em>Parameter</em>}' reference.
+   * Sets the value of the '{@link org.xtext.function.function.TerminalExpression#getFunctioncall <em>Functioncall</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Parameter</em>' reference.
-   * @see #getParameter()
+   * @param value the new value of the '<em>Functioncall</em>' containment reference.
+   * @see #getFunctioncall()
    * @generated
    */
-  void setParameter(Parameter value);
+  void setFunctioncall(FunctionCall value);
 
 } // TerminalExpression

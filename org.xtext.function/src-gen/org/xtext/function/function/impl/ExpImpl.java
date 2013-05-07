@@ -11,8 +11,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.xtext.function.function.Exp;
+import org.xtext.function.function.FunctionCall;
 import org.xtext.function.function.FunctionPackage;
-import org.xtext.function.function.Parameter;
 import org.xtext.function.function.TerminalExpression;
 import org.xtext.function.function.VariableDefinition;
 
@@ -25,7 +25,7 @@ import org.xtext.function.function.VariableDefinition;
  * <ul>
  *   <li>{@link org.xtext.function.function.impl.ExpImpl#getVariable <em>Variable</em>}</li>
  *   <li>{@link org.xtext.function.function.impl.ExpImpl#getValue <em>Value</em>}</li>
- *   <li>{@link org.xtext.function.function.impl.ExpImpl#getParameter <em>Parameter</em>}</li>
+ *   <li>{@link org.xtext.function.function.impl.ExpImpl#getFunctioncall <em>Functioncall</em>}</li>
  *   <li>{@link org.xtext.function.function.impl.ExpImpl#getLeft <em>Left</em>}</li>
  * </ul>
  * </p>
@@ -65,14 +65,14 @@ public class ExpImpl extends ExpWithDefinitionsImpl implements Exp
   protected String value = VALUE_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getParameter() <em>Parameter</em>}' reference.
+   * The cached value of the '{@link #getFunctioncall() <em>Functioncall</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getParameter()
+   * @see #getFunctioncall()
    * @generated
    * @ordered
    */
-  protected Parameter parameter;
+  protected FunctionCall functioncall;
 
   /**
    * The cached value of the '{@link #getLeft() <em>Left</em>}' containment reference.
@@ -176,19 +176,9 @@ public class ExpImpl extends ExpWithDefinitionsImpl implements Exp
    * <!-- end-user-doc -->
    * @generated
    */
-  public Parameter getParameter()
+  public FunctionCall getFunctioncall()
   {
-    if (parameter != null && parameter.eIsProxy())
-    {
-      InternalEObject oldParameter = (InternalEObject)parameter;
-      parameter = (Parameter)eResolveProxy(oldParameter);
-      if (parameter != oldParameter)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, FunctionPackage.EXP__PARAMETER, oldParameter, parameter));
-      }
-    }
-    return parameter;
+    return functioncall;
   }
 
   /**
@@ -196,22 +186,37 @@ public class ExpImpl extends ExpWithDefinitionsImpl implements Exp
    * <!-- end-user-doc -->
    * @generated
    */
-  public Parameter basicGetParameter()
+  public NotificationChain basicSetFunctioncall(FunctionCall newFunctioncall, NotificationChain msgs)
   {
-    return parameter;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setParameter(Parameter newParameter)
-  {
-    Parameter oldParameter = parameter;
-    parameter = newParameter;
+    FunctionCall oldFunctioncall = functioncall;
+    functioncall = newFunctioncall;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FunctionPackage.EXP__PARAMETER, oldParameter, parameter));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FunctionPackage.EXP__FUNCTIONCALL, oldFunctioncall, newFunctioncall);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setFunctioncall(FunctionCall newFunctioncall)
+  {
+    if (newFunctioncall != functioncall)
+    {
+      NotificationChain msgs = null;
+      if (functioncall != null)
+        msgs = ((InternalEObject)functioncall).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FunctionPackage.EXP__FUNCTIONCALL, null, msgs);
+      if (newFunctioncall != null)
+        msgs = ((InternalEObject)newFunctioncall).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FunctionPackage.EXP__FUNCTIONCALL, null, msgs);
+      msgs = basicSetFunctioncall(newFunctioncall, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FunctionPackage.EXP__FUNCTIONCALL, newFunctioncall, newFunctioncall));
   }
 
   /**
@@ -272,6 +277,8 @@ public class ExpImpl extends ExpWithDefinitionsImpl implements Exp
   {
     switch (featureID)
     {
+      case FunctionPackage.EXP__FUNCTIONCALL:
+        return basicSetFunctioncall(null, msgs);
       case FunctionPackage.EXP__LEFT:
         return basicSetLeft(null, msgs);
     }
@@ -293,9 +300,8 @@ public class ExpImpl extends ExpWithDefinitionsImpl implements Exp
         return basicGetVariable();
       case FunctionPackage.EXP__VALUE:
         return getValue();
-      case FunctionPackage.EXP__PARAMETER:
-        if (resolve) return getParameter();
-        return basicGetParameter();
+      case FunctionPackage.EXP__FUNCTIONCALL:
+        return getFunctioncall();
       case FunctionPackage.EXP__LEFT:
         return getLeft();
     }
@@ -318,8 +324,8 @@ public class ExpImpl extends ExpWithDefinitionsImpl implements Exp
       case FunctionPackage.EXP__VALUE:
         setValue((String)newValue);
         return;
-      case FunctionPackage.EXP__PARAMETER:
-        setParameter((Parameter)newValue);
+      case FunctionPackage.EXP__FUNCTIONCALL:
+        setFunctioncall((FunctionCall)newValue);
         return;
       case FunctionPackage.EXP__LEFT:
         setLeft((TerminalExpression)newValue);
@@ -344,8 +350,8 @@ public class ExpImpl extends ExpWithDefinitionsImpl implements Exp
       case FunctionPackage.EXP__VALUE:
         setValue(VALUE_EDEFAULT);
         return;
-      case FunctionPackage.EXP__PARAMETER:
-        setParameter((Parameter)null);
+      case FunctionPackage.EXP__FUNCTIONCALL:
+        setFunctioncall((FunctionCall)null);
         return;
       case FunctionPackage.EXP__LEFT:
         setLeft((TerminalExpression)null);
@@ -368,8 +374,8 @@ public class ExpImpl extends ExpWithDefinitionsImpl implements Exp
         return variable != null;
       case FunctionPackage.EXP__VALUE:
         return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
-      case FunctionPackage.EXP__PARAMETER:
-        return parameter != null;
+      case FunctionPackage.EXP__FUNCTIONCALL:
+        return functioncall != null;
       case FunctionPackage.EXP__LEFT:
         return left != null;
     }
@@ -390,7 +396,7 @@ public class ExpImpl extends ExpWithDefinitionsImpl implements Exp
       {
         case FunctionPackage.EXP__VARIABLE: return FunctionPackage.TERMINAL_EXPRESSION__VARIABLE;
         case FunctionPackage.EXP__VALUE: return FunctionPackage.TERMINAL_EXPRESSION__VALUE;
-        case FunctionPackage.EXP__PARAMETER: return FunctionPackage.TERMINAL_EXPRESSION__PARAMETER;
+        case FunctionPackage.EXP__FUNCTIONCALL: return FunctionPackage.TERMINAL_EXPRESSION__FUNCTIONCALL;
         default: return -1;
       }
     }
@@ -411,7 +417,7 @@ public class ExpImpl extends ExpWithDefinitionsImpl implements Exp
       {
         case FunctionPackage.TERMINAL_EXPRESSION__VARIABLE: return FunctionPackage.EXP__VARIABLE;
         case FunctionPackage.TERMINAL_EXPRESSION__VALUE: return FunctionPackage.EXP__VALUE;
-        case FunctionPackage.TERMINAL_EXPRESSION__PARAMETER: return FunctionPackage.EXP__PARAMETER;
+        case FunctionPackage.TERMINAL_EXPRESSION__FUNCTIONCALL: return FunctionPackage.EXP__FUNCTIONCALL;
         default: return -1;
       }
     }

@@ -3,7 +3,10 @@ package org.xtext.function.validation;
 import org.eclipse.xtext.validation.Check;
 import org.xtext.function.function.FunctionPackage;
 import org.xtext.function.function.FunctionDefinition;
+import org.xtext.function.function.FunctionCall;
 import org.xtext.function.function.Parameter;
+import org.xtext.function.function.ParamValues;
+import org.eclipse.emf.ecore.EObject;
  
 
 public class FunctionJavaValidator extends AbstractFunctionJavaValidator {
@@ -13,18 +16,34 @@ public class FunctionJavaValidator extends AbstractFunctionJavaValidator {
 	public void checkFunctionNameIsNotDuplicated(FunctionDefinition fd){
 		FunctionDefinition temporaryFd;
 		org.eclipse.emf.ecore.EObject tmp = fd.eContainer();
-		for(org.eclipse.emf.ecore.EObject par : tmp.eContents()){
+		for(EObject par : tmp.eContents()){
 			if(par instanceof FunctionDefinition){
 				temporaryFd = (FunctionDefinition)par;
 				if(fd.hashCode() != temporaryFd.hashCode()){
 					if(fd.getName().equals(temporaryFd.getName())){
-						error("Nazwa funkcji nie mo¿e siê powtarzaæ", FunctionPackage.Literals.FUNCTION_DEFINITION__NAME);
+						error("Nazwa funkcji nie mo¿e siê powtarzaæ", FunctionPackage.Literals.FUNCTION_DEFINITION__NAME,"101","DuplicatedName");
+						
 					}
 				}
 			}
 		}			
 	}
 	
+	@Check
+	public void checkFunctionCallHasCorrectNumberOfParameters(FunctionCall fc){
+		int functionParameters = 0;
+		int givenParameters = 0;
+		for(Parameter par : fc.getFunc().getParameters()){
+			functionParameters++;
+		}
+		for(ParamValues pv: fc.getParamvalues()){
+			givenParameters++;
+		}
+		if(functionParameters != givenParameters){
+			error("Niezgodna iloœæ parametrów ( dana funkcja posiada ich "+functionParameters+" )", FunctionPackage.Literals.FUNCTION_CALL__PARAMVALUES,"102","WrongParamNumbers");
+		}
+		
+	}
 	/*
 	@Check
 	public void checkParameterBelongToFunction(FunctionDefinition fd){

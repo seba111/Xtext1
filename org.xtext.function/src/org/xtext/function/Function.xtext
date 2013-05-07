@@ -7,7 +7,7 @@ Model:
 	elements+=Start*;
 
 Start:
-	'('ExpWithDefinitions')'
+	'('ExpWithDefinitions')'| FunctionCall
 ;
 
 ExpWithDefinitions:
@@ -21,7 +21,7 @@ Expression :
 	 (op=ArithmeticOperation left=TerminalExpression)? (right+=TerminalExpression)+ 
 ;
 TerminalExpression:
-	('(' Exp ')' | variable=[VariableDefinition|NAME] | value=DOUBLE | parameter=[Parameter|PARAMNAME])
+	('(' Exp ')' | variable=[VariableDefinition|NAME] | value=DOUBLE | functioncall=FunctionCall)
 ;
 ArithmeticOperation:
 	'+'|'-'|'/'|'*'
@@ -47,12 +47,44 @@ VariableDefinition:
 	'define' name=NAME number=DOUBLE
 ;
 FunctionDefinition:
-	'define' '(' name=NAME parameters+=Parameter+ ')' '(' exp=Exp ')'
+	'define' '(' name=NAME parameters+=Parameter+ ')' '(' exp=ExpInFun ')'
 ;
 Parameter:
 	name=PARAMNAME
 ;
+FunctionCall:
+	'(' 'call' func=[FunctionDefinition|NAME] paramvalues+=ParamValues* ')'
+;
+ParamValues:
+	value=DOUBLE | variable=[VariableDefinition|NAME]
+;
+// -- elementy ciala funkcji
+ExpInFun:
+	=>MathFunctionInFun | ExpressionInFun 
+;
+ExpressionInFun :
+	 (op=ArithmeticOperation left=TerminalExpressionInFun)? (right+=TerminalExpressionInFun)+ 
+;
+TerminalExpressionInFun:
+	('(' ExpInFun ')'  | value=DOUBLE | parameter=[Parameter|PARAMNAME] )
+;
+MathFunctionInFun:
+	MathTwoArgInFun | MathOneArgInFun
+;
+MathTwoArgInFun:
+	(function=TwoArgFunction left=TerminalExpressionInFun)? right=TerminalExpressionInFun
+;
+MathOneArgInFun:
+	function=OneArgFunction left=TerminalExpressionInFun
+;
 
+// instrukcja warunkowa
+IfStatement:
+	'(' 'if' '(' iftype=IfType left=Exp right=Exp ')' whentrue=Exp whenfalse=Exp ')'
+;
+IfType:
+	'equal' | 'less' | 'greater'
+;
 terminal DOUBLE:
 	('0'..'9')+'.'('0'..'9')+
 ;

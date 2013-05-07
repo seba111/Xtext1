@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.xtext.function.function.Exp;
+import org.xtext.function.function.ExpInFun;
 import org.xtext.function.function.FunctionDefinition;
 import org.xtext.function.function.FunctionPackage;
 import org.xtext.function.function.Parameter;
@@ -77,7 +77,7 @@ public class FunctionDefinitionImpl extends ExpWithDefinitionsImpl implements Fu
    * @generated
    * @ordered
    */
-  protected Exp exp;
+  protected ExpInFun exp;
 
   /**
    * <!-- begin-user-doc -->
@@ -142,7 +142,7 @@ public class FunctionDefinitionImpl extends ExpWithDefinitionsImpl implements Fu
    * <!-- end-user-doc -->
    * @generated
    */
-  public Exp getExp()
+  public ExpInFun getExp()
   {
     return exp;
   }
@@ -152,9 +152,9 @@ public class FunctionDefinitionImpl extends ExpWithDefinitionsImpl implements Fu
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetExp(Exp newExp, NotificationChain msgs)
+  public NotificationChain basicSetExp(ExpInFun newExp, NotificationChain msgs)
   {
-    Exp oldExp = exp;
+    ExpInFun oldExp = exp;
     exp = newExp;
     if (eNotificationRequired())
     {
@@ -169,7 +169,7 @@ public class FunctionDefinitionImpl extends ExpWithDefinitionsImpl implements Fu
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setExp(Exp newExp)
+  public void setExp(ExpInFun newExp)
   {
     if (newExp != exp)
     {
@@ -242,7 +242,7 @@ public class FunctionDefinitionImpl extends ExpWithDefinitionsImpl implements Fu
         getParameters().addAll((Collection<? extends Parameter>)newValue);
         return;
       case FunctionPackage.FUNCTION_DEFINITION__EXP:
-        setExp((Exp)newValue);
+        setExp((ExpInFun)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -265,7 +265,7 @@ public class FunctionDefinitionImpl extends ExpWithDefinitionsImpl implements Fu
         getParameters().clear();
         return;
       case FunctionPackage.FUNCTION_DEFINITION__EXP:
-        setExp((Exp)null);
+        setExp((ExpInFun)null);
         return;
     }
     super.eUnset(featureID);

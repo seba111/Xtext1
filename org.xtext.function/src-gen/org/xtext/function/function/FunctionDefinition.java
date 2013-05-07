@@ -75,12 +75,12 @@ public interface FunctionDefinition extends ExpWithDefinitions
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Exp</em>' containment reference.
-   * @see #setExp(Exp)
+   * @see #setExp(ExpInFun)
    * @see org.xtext.function.function.FunctionPackage#getFunctionDefinition_Exp()
    * @model containment="true"
    * @generated
    */
-  Exp getExp();
+  ExpInFun getExp();
 
   /**
    * Sets the value of the '{@link org.xtext.function.function.FunctionDefinition#getExp <em>Exp</em>}' containment reference.
@@ -90,6 +90,6 @@ public interface FunctionDefinition extends ExpWithDefinitions
    * @see #getExp()
    * @generated
    */
-  void setExp(Exp value);
+  void setExp(ExpInFun value);
 
 } // FunctionDefinition

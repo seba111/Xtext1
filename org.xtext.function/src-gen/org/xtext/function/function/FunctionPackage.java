@@ -151,13 +151,13 @@ public interface FunctionPackage extends EPackage
   int EXP__VALUE = EXP_WITH_DEFINITIONS_FEATURE_COUNT + 1;
 
   /**
-   * The feature id for the '<em><b>Parameter</b></em>' reference.
+   * The feature id for the '<em><b>Functioncall</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXP__PARAMETER = EXP_WITH_DEFINITIONS_FEATURE_COUNT + 2;
+  int EXP__FUNCTIONCALL = EXP_WITH_DEFINITIONS_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -206,13 +206,13 @@ public interface FunctionPackage extends EPackage
   int EXPRESSION__VALUE = EXP__VALUE;
 
   /**
-   * The feature id for the '<em><b>Parameter</b></em>' reference.
+   * The feature id for the '<em><b>Functioncall</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPRESSION__PARAMETER = EXP__PARAMETER;
+  int EXPRESSION__FUNCTIONCALL = EXP__FUNCTIONCALL;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -279,13 +279,13 @@ public interface FunctionPackage extends EPackage
   int TERMINAL_EXPRESSION__VALUE = 1;
 
   /**
-   * The feature id for the '<em><b>Parameter</b></em>' reference.
+   * The feature id for the '<em><b>Functioncall</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TERMINAL_EXPRESSION__PARAMETER = 2;
+  int TERMINAL_EXPRESSION__FUNCTIONCALL = 2;
 
   /**
    * The number of structural features of the '<em>Terminal Expression</em>' class.
@@ -325,13 +325,13 @@ public interface FunctionPackage extends EPackage
   int MATH_FUNCTION__VALUE = EXP__VALUE;
 
   /**
-   * The feature id for the '<em><b>Parameter</b></em>' reference.
+   * The feature id for the '<em><b>Functioncall</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MATH_FUNCTION__PARAMETER = EXP__PARAMETER;
+  int MATH_FUNCTION__FUNCTIONCALL = EXP__FUNCTIONCALL;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -389,13 +389,13 @@ public interface FunctionPackage extends EPackage
   int MATH_TWO_ARG__VALUE = MATH_FUNCTION__VALUE;
 
   /**
-   * The feature id for the '<em><b>Parameter</b></em>' reference.
+   * The feature id for the '<em><b>Functioncall</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MATH_TWO_ARG__PARAMETER = MATH_FUNCTION__PARAMETER;
+  int MATH_TWO_ARG__FUNCTIONCALL = MATH_FUNCTION__FUNCTIONCALL;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -462,13 +462,13 @@ public interface FunctionPackage extends EPackage
   int MATH_ONE_ARG__VALUE = MATH_FUNCTION__VALUE;
 
   /**
-   * The feature id for the '<em><b>Parameter</b></em>' reference.
+   * The feature id for the '<em><b>Functioncall</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MATH_ONE_ARG__PARAMETER = MATH_FUNCTION__PARAMETER;
+  int MATH_ONE_ARG__FUNCTIONCALL = MATH_FUNCTION__FUNCTIONCALL;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -608,6 +608,465 @@ public interface FunctionPackage extends EPackage
    */
   int PARAMETER_FEATURE_COUNT = 1;
 
+  /**
+   * The meta object id for the '{@link org.xtext.function.function.impl.FunctionCallImpl <em>Call</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.function.function.impl.FunctionCallImpl
+   * @see org.xtext.function.function.impl.FunctionPackageImpl#getFunctionCall()
+   * @generated
+   */
+  int FUNCTION_CALL = 12;
+
+  /**
+   * The feature id for the '<em><b>Func</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_CALL__FUNC = START_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Paramvalues</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_CALL__PARAMVALUES = START_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Call</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_CALL_FEATURE_COUNT = START_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.function.function.impl.ParamValuesImpl <em>Param Values</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.function.function.impl.ParamValuesImpl
+   * @see org.xtext.function.function.impl.FunctionPackageImpl#getParamValues()
+   * @generated
+   */
+  int PARAM_VALUES = 13;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PARAM_VALUES__VALUE = 0;
+
+  /**
+   * The feature id for the '<em><b>Variable</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PARAM_VALUES__VARIABLE = 1;
+
+  /**
+   * The number of structural features of the '<em>Param Values</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PARAM_VALUES_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.function.function.impl.TerminalExpressionInFunImpl <em>Terminal Expression In Fun</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.function.function.impl.TerminalExpressionInFunImpl
+   * @see org.xtext.function.function.impl.FunctionPackageImpl#getTerminalExpressionInFun()
+   * @generated
+   */
+  int TERMINAL_EXPRESSION_IN_FUN = 16;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TERMINAL_EXPRESSION_IN_FUN__VALUE = 0;
+
+  /**
+   * The feature id for the '<em><b>Parameter</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TERMINAL_EXPRESSION_IN_FUN__PARAMETER = 1;
+
+  /**
+   * The number of structural features of the '<em>Terminal Expression In Fun</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TERMINAL_EXPRESSION_IN_FUN_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.function.function.impl.ExpInFunImpl <em>Exp In Fun</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.function.function.impl.ExpInFunImpl
+   * @see org.xtext.function.function.impl.FunctionPackageImpl#getExpInFun()
+   * @generated
+   */
+  int EXP_IN_FUN = 14;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXP_IN_FUN__VALUE = TERMINAL_EXPRESSION_IN_FUN__VALUE;
+
+  /**
+   * The feature id for the '<em><b>Parameter</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXP_IN_FUN__PARAMETER = TERMINAL_EXPRESSION_IN_FUN__PARAMETER;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXP_IN_FUN__LEFT = TERMINAL_EXPRESSION_IN_FUN_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Exp In Fun</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXP_IN_FUN_FEATURE_COUNT = TERMINAL_EXPRESSION_IN_FUN_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.function.function.impl.ExpressionInFunImpl <em>Expression In Fun</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.function.function.impl.ExpressionInFunImpl
+   * @see org.xtext.function.function.impl.FunctionPackageImpl#getExpressionInFun()
+   * @generated
+   */
+  int EXPRESSION_IN_FUN = 15;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPRESSION_IN_FUN__VALUE = EXP_IN_FUN__VALUE;
+
+  /**
+   * The feature id for the '<em><b>Parameter</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPRESSION_IN_FUN__PARAMETER = EXP_IN_FUN__PARAMETER;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPRESSION_IN_FUN__LEFT = EXP_IN_FUN__LEFT;
+
+  /**
+   * The feature id for the '<em><b>Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPRESSION_IN_FUN__OP = EXP_IN_FUN_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPRESSION_IN_FUN__RIGHT = EXP_IN_FUN_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Expression In Fun</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPRESSION_IN_FUN_FEATURE_COUNT = EXP_IN_FUN_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.function.function.impl.MathFunctionInFunImpl <em>Math Function In Fun</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.function.function.impl.MathFunctionInFunImpl
+   * @see org.xtext.function.function.impl.FunctionPackageImpl#getMathFunctionInFun()
+   * @generated
+   */
+  int MATH_FUNCTION_IN_FUN = 17;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATH_FUNCTION_IN_FUN__VALUE = EXP_IN_FUN__VALUE;
+
+  /**
+   * The feature id for the '<em><b>Parameter</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATH_FUNCTION_IN_FUN__PARAMETER = EXP_IN_FUN__PARAMETER;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATH_FUNCTION_IN_FUN__LEFT = EXP_IN_FUN__LEFT;
+
+  /**
+   * The feature id for the '<em><b>Function</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATH_FUNCTION_IN_FUN__FUNCTION = EXP_IN_FUN_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Math Function In Fun</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATH_FUNCTION_IN_FUN_FEATURE_COUNT = EXP_IN_FUN_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.function.function.impl.MathTwoArgInFunImpl <em>Math Two Arg In Fun</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.function.function.impl.MathTwoArgInFunImpl
+   * @see org.xtext.function.function.impl.FunctionPackageImpl#getMathTwoArgInFun()
+   * @generated
+   */
+  int MATH_TWO_ARG_IN_FUN = 18;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATH_TWO_ARG_IN_FUN__VALUE = MATH_FUNCTION_IN_FUN__VALUE;
+
+  /**
+   * The feature id for the '<em><b>Parameter</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATH_TWO_ARG_IN_FUN__PARAMETER = MATH_FUNCTION_IN_FUN__PARAMETER;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATH_TWO_ARG_IN_FUN__LEFT = MATH_FUNCTION_IN_FUN__LEFT;
+
+  /**
+   * The feature id for the '<em><b>Function</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATH_TWO_ARG_IN_FUN__FUNCTION = MATH_FUNCTION_IN_FUN__FUNCTION;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATH_TWO_ARG_IN_FUN__RIGHT = MATH_FUNCTION_IN_FUN_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Math Two Arg In Fun</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATH_TWO_ARG_IN_FUN_FEATURE_COUNT = MATH_FUNCTION_IN_FUN_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.function.function.impl.MathOneArgInFunImpl <em>Math One Arg In Fun</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.function.function.impl.MathOneArgInFunImpl
+   * @see org.xtext.function.function.impl.FunctionPackageImpl#getMathOneArgInFun()
+   * @generated
+   */
+  int MATH_ONE_ARG_IN_FUN = 19;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATH_ONE_ARG_IN_FUN__VALUE = MATH_FUNCTION_IN_FUN__VALUE;
+
+  /**
+   * The feature id for the '<em><b>Parameter</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATH_ONE_ARG_IN_FUN__PARAMETER = MATH_FUNCTION_IN_FUN__PARAMETER;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATH_ONE_ARG_IN_FUN__LEFT = MATH_FUNCTION_IN_FUN__LEFT;
+
+  /**
+   * The feature id for the '<em><b>Function</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATH_ONE_ARG_IN_FUN__FUNCTION = MATH_FUNCTION_IN_FUN__FUNCTION;
+
+  /**
+   * The number of structural features of the '<em>Math One Arg In Fun</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATH_ONE_ARG_IN_FUN_FEATURE_COUNT = MATH_FUNCTION_IN_FUN_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link org.xtext.function.function.impl.IfStatementImpl <em>If Statement</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.function.function.impl.IfStatementImpl
+   * @see org.xtext.function.function.impl.FunctionPackageImpl#getIfStatement()
+   * @generated
+   */
+  int IF_STATEMENT = 20;
+
+  /**
+   * The feature id for the '<em><b>Iftype</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IF_STATEMENT__IFTYPE = 0;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IF_STATEMENT__LEFT = 1;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IF_STATEMENT__RIGHT = 2;
+
+  /**
+   * The feature id for the '<em><b>Whentrue</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IF_STATEMENT__WHENTRUE = 3;
+
+  /**
+   * The feature id for the '<em><b>Whenfalse</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IF_STATEMENT__WHENFALSE = 4;
+
+  /**
+   * The number of structural features of the '<em>If Statement</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IF_STATEMENT_FEATURE_COUNT = 5;
+
 
   /**
    * Returns the meta object for class '{@link org.xtext.function.function.Model <em>Model</em>}'.
@@ -736,15 +1195,15 @@ public interface FunctionPackage extends EPackage
   EAttribute getTerminalExpression_Value();
 
   /**
-   * Returns the meta object for the reference '{@link org.xtext.function.function.TerminalExpression#getParameter <em>Parameter</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.function.function.TerminalExpression#getFunctioncall <em>Functioncall</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Parameter</em>'.
-   * @see org.xtext.function.function.TerminalExpression#getParameter()
+   * @return the meta object for the containment reference '<em>Functioncall</em>'.
+   * @see org.xtext.function.function.TerminalExpression#getFunctioncall()
    * @see #getTerminalExpression()
    * @generated
    */
-  EReference getTerminalExpression_Parameter();
+  EReference getTerminalExpression_Functioncall();
 
   /**
    * Returns the meta object for class '{@link org.xtext.function.function.MathFunction <em>Math Function</em>}'.
@@ -895,6 +1354,272 @@ public interface FunctionPackage extends EPackage
   EAttribute getParameter_Name();
 
   /**
+   * Returns the meta object for class '{@link org.xtext.function.function.FunctionCall <em>Call</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Call</em>'.
+   * @see org.xtext.function.function.FunctionCall
+   * @generated
+   */
+  EClass getFunctionCall();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.function.function.FunctionCall#getFunc <em>Func</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Func</em>'.
+   * @see org.xtext.function.function.FunctionCall#getFunc()
+   * @see #getFunctionCall()
+   * @generated
+   */
+  EReference getFunctionCall_Func();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.function.function.FunctionCall#getParamvalues <em>Paramvalues</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Paramvalues</em>'.
+   * @see org.xtext.function.function.FunctionCall#getParamvalues()
+   * @see #getFunctionCall()
+   * @generated
+   */
+  EReference getFunctionCall_Paramvalues();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.function.function.ParamValues <em>Param Values</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Param Values</em>'.
+   * @see org.xtext.function.function.ParamValues
+   * @generated
+   */
+  EClass getParamValues();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.function.function.ParamValues#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.xtext.function.function.ParamValues#getValue()
+   * @see #getParamValues()
+   * @generated
+   */
+  EAttribute getParamValues_Value();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.function.function.ParamValues#getVariable <em>Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Variable</em>'.
+   * @see org.xtext.function.function.ParamValues#getVariable()
+   * @see #getParamValues()
+   * @generated
+   */
+  EReference getParamValues_Variable();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.function.function.ExpInFun <em>Exp In Fun</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Exp In Fun</em>'.
+   * @see org.xtext.function.function.ExpInFun
+   * @generated
+   */
+  EClass getExpInFun();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.function.function.ExpInFun#getLeft <em>Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see org.xtext.function.function.ExpInFun#getLeft()
+   * @see #getExpInFun()
+   * @generated
+   */
+  EReference getExpInFun_Left();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.function.function.ExpressionInFun <em>Expression In Fun</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Expression In Fun</em>'.
+   * @see org.xtext.function.function.ExpressionInFun
+   * @generated
+   */
+  EClass getExpressionInFun();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.function.function.ExpressionInFun#getOp <em>Op</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Op</em>'.
+   * @see org.xtext.function.function.ExpressionInFun#getOp()
+   * @see #getExpressionInFun()
+   * @generated
+   */
+  EAttribute getExpressionInFun_Op();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.function.function.ExpressionInFun#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Right</em>'.
+   * @see org.xtext.function.function.ExpressionInFun#getRight()
+   * @see #getExpressionInFun()
+   * @generated
+   */
+  EReference getExpressionInFun_Right();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.function.function.TerminalExpressionInFun <em>Terminal Expression In Fun</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Terminal Expression In Fun</em>'.
+   * @see org.xtext.function.function.TerminalExpressionInFun
+   * @generated
+   */
+  EClass getTerminalExpressionInFun();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.function.function.TerminalExpressionInFun#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.xtext.function.function.TerminalExpressionInFun#getValue()
+   * @see #getTerminalExpressionInFun()
+   * @generated
+   */
+  EAttribute getTerminalExpressionInFun_Value();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.function.function.TerminalExpressionInFun#getParameter <em>Parameter</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Parameter</em>'.
+   * @see org.xtext.function.function.TerminalExpressionInFun#getParameter()
+   * @see #getTerminalExpressionInFun()
+   * @generated
+   */
+  EReference getTerminalExpressionInFun_Parameter();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.function.function.MathFunctionInFun <em>Math Function In Fun</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Math Function In Fun</em>'.
+   * @see org.xtext.function.function.MathFunctionInFun
+   * @generated
+   */
+  EClass getMathFunctionInFun();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.function.function.MathFunctionInFun#getFunction <em>Function</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Function</em>'.
+   * @see org.xtext.function.function.MathFunctionInFun#getFunction()
+   * @see #getMathFunctionInFun()
+   * @generated
+   */
+  EAttribute getMathFunctionInFun_Function();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.function.function.MathTwoArgInFun <em>Math Two Arg In Fun</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Math Two Arg In Fun</em>'.
+   * @see org.xtext.function.function.MathTwoArgInFun
+   * @generated
+   */
+  EClass getMathTwoArgInFun();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.function.function.MathTwoArgInFun#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.xtext.function.function.MathTwoArgInFun#getRight()
+   * @see #getMathTwoArgInFun()
+   * @generated
+   */
+  EReference getMathTwoArgInFun_Right();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.function.function.MathOneArgInFun <em>Math One Arg In Fun</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Math One Arg In Fun</em>'.
+   * @see org.xtext.function.function.MathOneArgInFun
+   * @generated
+   */
+  EClass getMathOneArgInFun();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.function.function.IfStatement <em>If Statement</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>If Statement</em>'.
+   * @see org.xtext.function.function.IfStatement
+   * @generated
+   */
+  EClass getIfStatement();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.function.function.IfStatement#getIftype <em>Iftype</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Iftype</em>'.
+   * @see org.xtext.function.function.IfStatement#getIftype()
+   * @see #getIfStatement()
+   * @generated
+   */
+  EAttribute getIfStatement_Iftype();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.function.function.IfStatement#getLeft <em>Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see org.xtext.function.function.IfStatement#getLeft()
+   * @see #getIfStatement()
+   * @generated
+   */
+  EReference getIfStatement_Left();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.function.function.IfStatement#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.xtext.function.function.IfStatement#getRight()
+   * @see #getIfStatement()
+   * @generated
+   */
+  EReference getIfStatement_Right();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.function.function.IfStatement#getWhentrue <em>Whentrue</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Whentrue</em>'.
+   * @see org.xtext.function.function.IfStatement#getWhentrue()
+   * @see #getIfStatement()
+   * @generated
+   */
+  EReference getIfStatement_Whentrue();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.function.function.IfStatement#getWhenfalse <em>Whenfalse</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Whenfalse</em>'.
+   * @see org.xtext.function.function.IfStatement#getWhenfalse()
+   * @see #getIfStatement()
+   * @generated
+   */
+  EReference getIfStatement_Whenfalse();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1026,12 +1751,12 @@ public interface FunctionPackage extends EPackage
     EAttribute TERMINAL_EXPRESSION__VALUE = eINSTANCE.getTerminalExpression_Value();
 
     /**
-     * The meta object literal for the '<em><b>Parameter</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Functioncall</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference TERMINAL_EXPRESSION__PARAMETER = eINSTANCE.getTerminalExpression_Parameter();
+    EReference TERMINAL_EXPRESSION__FUNCTIONCALL = eINSTANCE.getTerminalExpression_Functioncall();
 
     /**
      * The meta object literal for the '{@link org.xtext.function.function.impl.MathFunctionImpl <em>Math Function</em>}' class.
@@ -1156,6 +1881,224 @@ public interface FunctionPackage extends EPackage
      * @generated
      */
     EAttribute PARAMETER__NAME = eINSTANCE.getParameter_Name();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.function.function.impl.FunctionCallImpl <em>Call</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.function.function.impl.FunctionCallImpl
+     * @see org.xtext.function.function.impl.FunctionPackageImpl#getFunctionCall()
+     * @generated
+     */
+    EClass FUNCTION_CALL = eINSTANCE.getFunctionCall();
+
+    /**
+     * The meta object literal for the '<em><b>Func</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FUNCTION_CALL__FUNC = eINSTANCE.getFunctionCall_Func();
+
+    /**
+     * The meta object literal for the '<em><b>Paramvalues</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FUNCTION_CALL__PARAMVALUES = eINSTANCE.getFunctionCall_Paramvalues();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.function.function.impl.ParamValuesImpl <em>Param Values</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.function.function.impl.ParamValuesImpl
+     * @see org.xtext.function.function.impl.FunctionPackageImpl#getParamValues()
+     * @generated
+     */
+    EClass PARAM_VALUES = eINSTANCE.getParamValues();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PARAM_VALUES__VALUE = eINSTANCE.getParamValues_Value();
+
+    /**
+     * The meta object literal for the '<em><b>Variable</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PARAM_VALUES__VARIABLE = eINSTANCE.getParamValues_Variable();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.function.function.impl.ExpInFunImpl <em>Exp In Fun</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.function.function.impl.ExpInFunImpl
+     * @see org.xtext.function.function.impl.FunctionPackageImpl#getExpInFun()
+     * @generated
+     */
+    EClass EXP_IN_FUN = eINSTANCE.getExpInFun();
+
+    /**
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXP_IN_FUN__LEFT = eINSTANCE.getExpInFun_Left();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.function.function.impl.ExpressionInFunImpl <em>Expression In Fun</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.function.function.impl.ExpressionInFunImpl
+     * @see org.xtext.function.function.impl.FunctionPackageImpl#getExpressionInFun()
+     * @generated
+     */
+    EClass EXPRESSION_IN_FUN = eINSTANCE.getExpressionInFun();
+
+    /**
+     * The meta object literal for the '<em><b>Op</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute EXPRESSION_IN_FUN__OP = eINSTANCE.getExpressionInFun_Op();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXPRESSION_IN_FUN__RIGHT = eINSTANCE.getExpressionInFun_Right();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.function.function.impl.TerminalExpressionInFunImpl <em>Terminal Expression In Fun</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.function.function.impl.TerminalExpressionInFunImpl
+     * @see org.xtext.function.function.impl.FunctionPackageImpl#getTerminalExpressionInFun()
+     * @generated
+     */
+    EClass TERMINAL_EXPRESSION_IN_FUN = eINSTANCE.getTerminalExpressionInFun();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TERMINAL_EXPRESSION_IN_FUN__VALUE = eINSTANCE.getTerminalExpressionInFun_Value();
+
+    /**
+     * The meta object literal for the '<em><b>Parameter</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TERMINAL_EXPRESSION_IN_FUN__PARAMETER = eINSTANCE.getTerminalExpressionInFun_Parameter();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.function.function.impl.MathFunctionInFunImpl <em>Math Function In Fun</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.function.function.impl.MathFunctionInFunImpl
+     * @see org.xtext.function.function.impl.FunctionPackageImpl#getMathFunctionInFun()
+     * @generated
+     */
+    EClass MATH_FUNCTION_IN_FUN = eINSTANCE.getMathFunctionInFun();
+
+    /**
+     * The meta object literal for the '<em><b>Function</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MATH_FUNCTION_IN_FUN__FUNCTION = eINSTANCE.getMathFunctionInFun_Function();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.function.function.impl.MathTwoArgInFunImpl <em>Math Two Arg In Fun</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.function.function.impl.MathTwoArgInFunImpl
+     * @see org.xtext.function.function.impl.FunctionPackageImpl#getMathTwoArgInFun()
+     * @generated
+     */
+    EClass MATH_TWO_ARG_IN_FUN = eINSTANCE.getMathTwoArgInFun();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MATH_TWO_ARG_IN_FUN__RIGHT = eINSTANCE.getMathTwoArgInFun_Right();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.function.function.impl.MathOneArgInFunImpl <em>Math One Arg In Fun</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.function.function.impl.MathOneArgInFunImpl
+     * @see org.xtext.function.function.impl.FunctionPackageImpl#getMathOneArgInFun()
+     * @generated
+     */
+    EClass MATH_ONE_ARG_IN_FUN = eINSTANCE.getMathOneArgInFun();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.function.function.impl.IfStatementImpl <em>If Statement</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.function.function.impl.IfStatementImpl
+     * @see org.xtext.function.function.impl.FunctionPackageImpl#getIfStatement()
+     * @generated
+     */
+    EClass IF_STATEMENT = eINSTANCE.getIfStatement();
+
+    /**
+     * The meta object literal for the '<em><b>Iftype</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute IF_STATEMENT__IFTYPE = eINSTANCE.getIfStatement_Iftype();
+
+    /**
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IF_STATEMENT__LEFT = eINSTANCE.getIfStatement_Left();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IF_STATEMENT__RIGHT = eINSTANCE.getIfStatement_Right();
+
+    /**
+     * The meta object literal for the '<em><b>Whentrue</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IF_STATEMENT__WHENTRUE = eINSTANCE.getIfStatement_Whentrue();
+
+    /**
+     * The meta object literal for the '<em><b>Whenfalse</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IF_STATEMENT__WHENFALSE = eINSTANCE.getIfStatement_Whenfalse();
 
   }
 

@@ -182,6 +182,81 @@ public class FunctionSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case FunctionPackage.FUNCTION_CALL:
+      {
+        FunctionCall functionCall = (FunctionCall)theEObject;
+        T result = caseFunctionCall(functionCall);
+        if (result == null) result = caseStart(functionCall);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FunctionPackage.PARAM_VALUES:
+      {
+        ParamValues paramValues = (ParamValues)theEObject;
+        T result = caseParamValues(paramValues);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FunctionPackage.EXP_IN_FUN:
+      {
+        ExpInFun expInFun = (ExpInFun)theEObject;
+        T result = caseExpInFun(expInFun);
+        if (result == null) result = caseTerminalExpressionInFun(expInFun);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FunctionPackage.EXPRESSION_IN_FUN:
+      {
+        ExpressionInFun expressionInFun = (ExpressionInFun)theEObject;
+        T result = caseExpressionInFun(expressionInFun);
+        if (result == null) result = caseExpInFun(expressionInFun);
+        if (result == null) result = caseTerminalExpressionInFun(expressionInFun);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FunctionPackage.TERMINAL_EXPRESSION_IN_FUN:
+      {
+        TerminalExpressionInFun terminalExpressionInFun = (TerminalExpressionInFun)theEObject;
+        T result = caseTerminalExpressionInFun(terminalExpressionInFun);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FunctionPackage.MATH_FUNCTION_IN_FUN:
+      {
+        MathFunctionInFun mathFunctionInFun = (MathFunctionInFun)theEObject;
+        T result = caseMathFunctionInFun(mathFunctionInFun);
+        if (result == null) result = caseExpInFun(mathFunctionInFun);
+        if (result == null) result = caseTerminalExpressionInFun(mathFunctionInFun);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FunctionPackage.MATH_TWO_ARG_IN_FUN:
+      {
+        MathTwoArgInFun mathTwoArgInFun = (MathTwoArgInFun)theEObject;
+        T result = caseMathTwoArgInFun(mathTwoArgInFun);
+        if (result == null) result = caseMathFunctionInFun(mathTwoArgInFun);
+        if (result == null) result = caseExpInFun(mathTwoArgInFun);
+        if (result == null) result = caseTerminalExpressionInFun(mathTwoArgInFun);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FunctionPackage.MATH_ONE_ARG_IN_FUN:
+      {
+        MathOneArgInFun mathOneArgInFun = (MathOneArgInFun)theEObject;
+        T result = caseMathOneArgInFun(mathOneArgInFun);
+        if (result == null) result = caseMathFunctionInFun(mathOneArgInFun);
+        if (result == null) result = caseExpInFun(mathOneArgInFun);
+        if (result == null) result = caseTerminalExpressionInFun(mathOneArgInFun);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FunctionPackage.IF_STATEMENT:
+      {
+        IfStatement ifStatement = (IfStatement)theEObject;
+        T result = caseIfStatement(ifStatement);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       default: return defaultCase(theEObject);
     }
   }
@@ -374,6 +449,150 @@ public class FunctionSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseParameter(Parameter object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Call</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Call</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFunctionCall(FunctionCall object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Param Values</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Param Values</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseParamValues(ParamValues object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Exp In Fun</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Exp In Fun</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExpInFun(ExpInFun object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expression In Fun</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expression In Fun</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExpressionInFun(ExpressionInFun object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Terminal Expression In Fun</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Terminal Expression In Fun</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTerminalExpressionInFun(TerminalExpressionInFun object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Math Function In Fun</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Math Function In Fun</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMathFunctionInFun(MathFunctionInFun object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Math Two Arg In Fun</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Math Two Arg In Fun</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMathTwoArgInFun(MathTwoArgInFun object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Math One Arg In Fun</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Math One Arg In Fun</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMathOneArgInFun(MathOneArgInFun object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>If Statement</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>If Statement</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseIfStatement(IfStatement object)
   {
     return null;
   }

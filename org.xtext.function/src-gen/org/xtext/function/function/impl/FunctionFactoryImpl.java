@@ -76,6 +76,15 @@ public class FunctionFactoryImpl extends EFactoryImpl implements FunctionFactory
       case FunctionPackage.VARIABLE_DEFINITION: return createVariableDefinition();
       case FunctionPackage.FUNCTION_DEFINITION: return createFunctionDefinition();
       case FunctionPackage.PARAMETER: return createParameter();
+      case FunctionPackage.FUNCTION_CALL: return createFunctionCall();
+      case FunctionPackage.PARAM_VALUES: return createParamValues();
+      case FunctionPackage.EXP_IN_FUN: return createExpInFun();
+      case FunctionPackage.EXPRESSION_IN_FUN: return createExpressionInFun();
+      case FunctionPackage.TERMINAL_EXPRESSION_IN_FUN: return createTerminalExpressionInFun();
+      case FunctionPackage.MATH_FUNCTION_IN_FUN: return createMathFunctionInFun();
+      case FunctionPackage.MATH_TWO_ARG_IN_FUN: return createMathTwoArgInFun();
+      case FunctionPackage.MATH_ONE_ARG_IN_FUN: return createMathOneArgInFun();
+      case FunctionPackage.IF_STATEMENT: return createIfStatement();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -211,6 +220,105 @@ public class FunctionFactoryImpl extends EFactoryImpl implements FunctionFactory
   {
     ParameterImpl parameter = new ParameterImpl();
     return parameter;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FunctionCall createFunctionCall()
+  {
+    FunctionCallImpl functionCall = new FunctionCallImpl();
+    return functionCall;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ParamValues createParamValues()
+  {
+    ParamValuesImpl paramValues = new ParamValuesImpl();
+    return paramValues;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExpInFun createExpInFun()
+  {
+    ExpInFunImpl expInFun = new ExpInFunImpl();
+    return expInFun;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExpressionInFun createExpressionInFun()
+  {
+    ExpressionInFunImpl expressionInFun = new ExpressionInFunImpl();
+    return expressionInFun;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TerminalExpressionInFun createTerminalExpressionInFun()
+  {
+    TerminalExpressionInFunImpl terminalExpressionInFun = new TerminalExpressionInFunImpl();
+    return terminalExpressionInFun;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MathFunctionInFun createMathFunctionInFun()
+  {
+    MathFunctionInFunImpl mathFunctionInFun = new MathFunctionInFunImpl();
+    return mathFunctionInFun;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MathTwoArgInFun createMathTwoArgInFun()
+  {
+    MathTwoArgInFunImpl mathTwoArgInFun = new MathTwoArgInFunImpl();
+    return mathTwoArgInFun;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MathOneArgInFun createMathOneArgInFun()
+  {
+    MathOneArgInFunImpl mathOneArgInFun = new MathOneArgInFunImpl();
+    return mathOneArgInFun;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public IfStatement createIfStatement()
+  {
+    IfStatementImpl ifStatement = new IfStatementImpl();
+    return ifStatement;
   }
 
   /**

@@ -3,6 +3,7 @@
 package org.xtext.function.function.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -10,8 +11,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.xtext.function.function.FunctionCall;
 import org.xtext.function.function.FunctionPackage;
-import org.xtext.function.function.Parameter;
 import org.xtext.function.function.TerminalExpression;
 import org.xtext.function.function.VariableDefinition;
 
@@ -24,7 +25,7 @@ import org.xtext.function.function.VariableDefinition;
  * <ul>
  *   <li>{@link org.xtext.function.function.impl.TerminalExpressionImpl#getVariable <em>Variable</em>}</li>
  *   <li>{@link org.xtext.function.function.impl.TerminalExpressionImpl#getValue <em>Value</em>}</li>
- *   <li>{@link org.xtext.function.function.impl.TerminalExpressionImpl#getParameter <em>Parameter</em>}</li>
+ *   <li>{@link org.xtext.function.function.impl.TerminalExpressionImpl#getFunctioncall <em>Functioncall</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,14 +64,14 @@ public class TerminalExpressionImpl extends MinimalEObjectImpl.Container impleme
   protected String value = VALUE_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getParameter() <em>Parameter</em>}' reference.
+   * The cached value of the '{@link #getFunctioncall() <em>Functioncall</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getParameter()
+   * @see #getFunctioncall()
    * @generated
    * @ordered
    */
-  protected Parameter parameter;
+  protected FunctionCall functioncall;
 
   /**
    * <!-- begin-user-doc -->
@@ -164,19 +165,9 @@ public class TerminalExpressionImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public Parameter getParameter()
+  public FunctionCall getFunctioncall()
   {
-    if (parameter != null && parameter.eIsProxy())
-    {
-      InternalEObject oldParameter = (InternalEObject)parameter;
-      parameter = (Parameter)eResolveProxy(oldParameter);
-      if (parameter != oldParameter)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, FunctionPackage.TERMINAL_EXPRESSION__PARAMETER, oldParameter, parameter));
-      }
-    }
-    return parameter;
+    return functioncall;
   }
 
   /**
@@ -184,22 +175,53 @@ public class TerminalExpressionImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public Parameter basicGetParameter()
+  public NotificationChain basicSetFunctioncall(FunctionCall newFunctioncall, NotificationChain msgs)
   {
-    return parameter;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setParameter(Parameter newParameter)
-  {
-    Parameter oldParameter = parameter;
-    parameter = newParameter;
+    FunctionCall oldFunctioncall = functioncall;
+    functioncall = newFunctioncall;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FunctionPackage.TERMINAL_EXPRESSION__PARAMETER, oldParameter, parameter));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FunctionPackage.TERMINAL_EXPRESSION__FUNCTIONCALL, oldFunctioncall, newFunctioncall);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setFunctioncall(FunctionCall newFunctioncall)
+  {
+    if (newFunctioncall != functioncall)
+    {
+      NotificationChain msgs = null;
+      if (functioncall != null)
+        msgs = ((InternalEObject)functioncall).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FunctionPackage.TERMINAL_EXPRESSION__FUNCTIONCALL, null, msgs);
+      if (newFunctioncall != null)
+        msgs = ((InternalEObject)newFunctioncall).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FunctionPackage.TERMINAL_EXPRESSION__FUNCTIONCALL, null, msgs);
+      msgs = basicSetFunctioncall(newFunctioncall, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FunctionPackage.TERMINAL_EXPRESSION__FUNCTIONCALL, newFunctioncall, newFunctioncall));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case FunctionPackage.TERMINAL_EXPRESSION__FUNCTIONCALL:
+        return basicSetFunctioncall(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -217,9 +239,8 @@ public class TerminalExpressionImpl extends MinimalEObjectImpl.Container impleme
         return basicGetVariable();
       case FunctionPackage.TERMINAL_EXPRESSION__VALUE:
         return getValue();
-      case FunctionPackage.TERMINAL_EXPRESSION__PARAMETER:
-        if (resolve) return getParameter();
-        return basicGetParameter();
+      case FunctionPackage.TERMINAL_EXPRESSION__FUNCTIONCALL:
+        return getFunctioncall();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -240,8 +261,8 @@ public class TerminalExpressionImpl extends MinimalEObjectImpl.Container impleme
       case FunctionPackage.TERMINAL_EXPRESSION__VALUE:
         setValue((String)newValue);
         return;
-      case FunctionPackage.TERMINAL_EXPRESSION__PARAMETER:
-        setParameter((Parameter)newValue);
+      case FunctionPackage.TERMINAL_EXPRESSION__FUNCTIONCALL:
+        setFunctioncall((FunctionCall)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -263,8 +284,8 @@ public class TerminalExpressionImpl extends MinimalEObjectImpl.Container impleme
       case FunctionPackage.TERMINAL_EXPRESSION__VALUE:
         setValue(VALUE_EDEFAULT);
         return;
-      case FunctionPackage.TERMINAL_EXPRESSION__PARAMETER:
-        setParameter((Parameter)null);
+      case FunctionPackage.TERMINAL_EXPRESSION__FUNCTIONCALL:
+        setFunctioncall((FunctionCall)null);
         return;
     }
     super.eUnset(featureID);
@@ -284,8 +305,8 @@ public class TerminalExpressionImpl extends MinimalEObjectImpl.Container impleme
         return variable != null;
       case FunctionPackage.TERMINAL_EXPRESSION__VALUE:
         return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
-      case FunctionPackage.TERMINAL_EXPRESSION__PARAMETER:
-        return parameter != null;
+      case FunctionPackage.TERMINAL_EXPRESSION__FUNCTIONCALL:
+        return functioncall != null;
     }
     return super.eIsSet(featureID);
   }

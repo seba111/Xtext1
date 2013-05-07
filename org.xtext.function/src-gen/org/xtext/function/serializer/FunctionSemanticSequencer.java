@@ -51,13 +51,20 @@ import org.eclipse.xtext.xbase.serializer.XbaseSemanticSequencer;
 import org.eclipse.xtext.xtype.XFunctionTypeRef;
 import org.eclipse.xtext.xtype.XtypePackage;
 import org.xtext.function.function.Expression;
+import org.xtext.function.function.ExpressionInFun;
+import org.xtext.function.function.FunctionCall;
 import org.xtext.function.function.FunctionDefinition;
 import org.xtext.function.function.FunctionPackage;
+import org.xtext.function.function.IfStatement;
 import org.xtext.function.function.MathOneArg;
+import org.xtext.function.function.MathOneArgInFun;
 import org.xtext.function.function.MathTwoArg;
+import org.xtext.function.function.MathTwoArgInFun;
 import org.xtext.function.function.Model;
+import org.xtext.function.function.ParamValues;
 import org.xtext.function.function.Parameter;
 import org.xtext.function.function.TerminalExpression;
+import org.xtext.function.function.TerminalExpressionInFun;
 import org.xtext.function.function.VariableDefinition;
 import org.xtext.function.services.FunctionGrammarAccess;
 
@@ -79,11 +86,32 @@ public class FunctionSemanticSequencer extends XbaseSemanticSequencer {
 					return; 
 				}
 				else break;
+			case FunctionPackage.EXPRESSION_IN_FUN:
+				if(context == grammarAccess.getExpInFunRule() ||
+				   context == grammarAccess.getExpressionInFunRule() ||
+				   context == grammarAccess.getTerminalExpressionInFunRule()) {
+					sequence_ExpressionInFun(context, (ExpressionInFun) semanticObject); 
+					return; 
+				}
+				else break;
+			case FunctionPackage.FUNCTION_CALL:
+				if(context == grammarAccess.getFunctionCallRule() ||
+				   context == grammarAccess.getStartRule()) {
+					sequence_FunctionCall(context, (FunctionCall) semanticObject); 
+					return; 
+				}
+				else break;
 			case FunctionPackage.FUNCTION_DEFINITION:
 				if(context == grammarAccess.getExpWithDefinitionsRule() ||
 				   context == grammarAccess.getFunctionDefinitionRule() ||
 				   context == grammarAccess.getStartRule()) {
 					sequence_FunctionDefinition(context, (FunctionDefinition) semanticObject); 
+					return; 
+				}
+				else break;
+			case FunctionPackage.IF_STATEMENT:
+				if(context == grammarAccess.getIfStatementRule()) {
+					sequence_IfStatement(context, (IfStatement) semanticObject); 
 					return; 
 				}
 				else break;
@@ -98,6 +126,15 @@ public class FunctionSemanticSequencer extends XbaseSemanticSequencer {
 					return; 
 				}
 				else break;
+			case FunctionPackage.MATH_ONE_ARG_IN_FUN:
+				if(context == grammarAccess.getExpInFunRule() ||
+				   context == grammarAccess.getMathFunctionInFunRule() ||
+				   context == grammarAccess.getMathOneArgInFunRule() ||
+				   context == grammarAccess.getTerminalExpressionInFunRule()) {
+					sequence_MathOneArgInFun(context, (MathOneArgInFun) semanticObject); 
+					return; 
+				}
+				else break;
 			case FunctionPackage.MATH_TWO_ARG:
 				if(context == grammarAccess.getExpRule() ||
 				   context == grammarAccess.getExpWithDefinitionsRule() ||
@@ -109,9 +146,24 @@ public class FunctionSemanticSequencer extends XbaseSemanticSequencer {
 					return; 
 				}
 				else break;
+			case FunctionPackage.MATH_TWO_ARG_IN_FUN:
+				if(context == grammarAccess.getExpInFunRule() ||
+				   context == grammarAccess.getMathFunctionInFunRule() ||
+				   context == grammarAccess.getMathTwoArgInFunRule() ||
+				   context == grammarAccess.getTerminalExpressionInFunRule()) {
+					sequence_MathTwoArgInFun(context, (MathTwoArgInFun) semanticObject); 
+					return; 
+				}
+				else break;
 			case FunctionPackage.MODEL:
 				if(context == grammarAccess.getModelRule()) {
 					sequence_Model(context, (Model) semanticObject); 
+					return; 
+				}
+				else break;
+			case FunctionPackage.PARAM_VALUES:
+				if(context == grammarAccess.getParamValuesRule()) {
+					sequence_ParamValues(context, (ParamValues) semanticObject); 
 					return; 
 				}
 				else break;
@@ -124,6 +176,12 @@ public class FunctionSemanticSequencer extends XbaseSemanticSequencer {
 			case FunctionPackage.TERMINAL_EXPRESSION:
 				if(context == grammarAccess.getTerminalExpressionRule()) {
 					sequence_TerminalExpression(context, (TerminalExpression) semanticObject); 
+					return; 
+				}
+				else break;
+			case FunctionPackage.TERMINAL_EXPRESSION_IN_FUN:
+				if(context == grammarAccess.getTerminalExpressionInFunRule()) {
+					sequence_TerminalExpressionInFun(context, (TerminalExpressionInFun) semanticObject); 
 					return; 
 				}
 				else break;
@@ -997,6 +1055,15 @@ public class FunctionSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
+	 *     ((op=ArithmeticOperation left=TerminalExpressionInFun)? right+=TerminalExpressionInFun+)
+	 */
+	protected void sequence_ExpressionInFun(EObject context, ExpressionInFun semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     ((op=ArithmeticOperation left=TerminalExpression)? right+=TerminalExpression+)
 	 */
 	protected void sequence_Expression(EObject context, Expression semanticObject) {
@@ -1006,9 +1073,55 @@ public class FunctionSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (name=NAME parameters+=Parameter+ exp=Exp)
+	 *     (func=[FunctionDefinition|NAME] paramvalues+=ParamValues*)
+	 */
+	protected void sequence_FunctionCall(EObject context, FunctionCall semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (name=NAME parameters+=Parameter+ exp=ExpInFun)
 	 */
 	protected void sequence_FunctionDefinition(EObject context, FunctionDefinition semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (iftype=IfType left=Exp right=Exp whentrue=Exp whenfalse=Exp)
+	 */
+	protected void sequence_IfStatement(EObject context, IfStatement semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, FunctionPackage.Literals.IF_STATEMENT__IFTYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FunctionPackage.Literals.IF_STATEMENT__IFTYPE));
+			if(transientValues.isValueTransient(semanticObject, FunctionPackage.Literals.IF_STATEMENT__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FunctionPackage.Literals.IF_STATEMENT__LEFT));
+			if(transientValues.isValueTransient(semanticObject, FunctionPackage.Literals.IF_STATEMENT__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FunctionPackage.Literals.IF_STATEMENT__RIGHT));
+			if(transientValues.isValueTransient(semanticObject, FunctionPackage.Literals.IF_STATEMENT__WHENTRUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FunctionPackage.Literals.IF_STATEMENT__WHENTRUE));
+			if(transientValues.isValueTransient(semanticObject, FunctionPackage.Literals.IF_STATEMENT__WHENFALSE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FunctionPackage.Literals.IF_STATEMENT__WHENFALSE));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getIfStatementAccess().getIftypeIfTypeParserRuleCall_3_0(), semanticObject.getIftype());
+		feeder.accept(grammarAccess.getIfStatementAccess().getLeftExpParserRuleCall_4_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getIfStatementAccess().getRightExpParserRuleCall_5_0(), semanticObject.getRight());
+		feeder.accept(grammarAccess.getIfStatementAccess().getWhentrueExpParserRuleCall_7_0(), semanticObject.getWhentrue());
+		feeder.accept(grammarAccess.getIfStatementAccess().getWhenfalseExpParserRuleCall_8_0(), semanticObject.getWhenfalse());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (function=OneArgFunction left=TerminalExpressionInFun)
+	 */
+	protected void sequence_MathOneArgInFun(EObject context, MathOneArgInFun semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1018,6 +1131,15 @@ public class FunctionSemanticSequencer extends XbaseSemanticSequencer {
 	 *     (function=OneArgFunction left=TerminalExpression)
 	 */
 	protected void sequence_MathOneArg(EObject context, MathOneArg semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     ((function=TwoArgFunction left=TerminalExpressionInFun)? right=TerminalExpressionInFun)
+	 */
+	protected void sequence_MathTwoArgInFun(EObject context, MathTwoArgInFun semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1042,6 +1164,15 @@ public class FunctionSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
+	 *     (value=DOUBLE | variable=[VariableDefinition|NAME])
+	 */
+	protected void sequence_ParamValues(EObject context, ParamValues semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     name=PARAMNAME
 	 */
 	protected void sequence_Parameter(EObject context, Parameter semanticObject) {
@@ -1058,7 +1189,16 @@ public class FunctionSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (variable=[VariableDefinition|NAME] | value=DOUBLE | parameter=[Parameter|PARAMNAME])
+	 *     (value=DOUBLE | parameter=[Parameter|PARAMNAME])
+	 */
+	protected void sequence_TerminalExpressionInFun(EObject context, TerminalExpressionInFun semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (variable=[VariableDefinition|NAME] | value=DOUBLE | functioncall=FunctionCall)
 	 */
 	protected void sequence_TerminalExpression(EObject context, TerminalExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

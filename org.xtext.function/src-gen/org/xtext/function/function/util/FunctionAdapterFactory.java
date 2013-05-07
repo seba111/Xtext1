@@ -135,6 +135,51 @@ public class FunctionAdapterFactory extends AdapterFactoryImpl
         return createParameterAdapter();
       }
       @Override
+      public Adapter caseFunctionCall(FunctionCall object)
+      {
+        return createFunctionCallAdapter();
+      }
+      @Override
+      public Adapter caseParamValues(ParamValues object)
+      {
+        return createParamValuesAdapter();
+      }
+      @Override
+      public Adapter caseExpInFun(ExpInFun object)
+      {
+        return createExpInFunAdapter();
+      }
+      @Override
+      public Adapter caseExpressionInFun(ExpressionInFun object)
+      {
+        return createExpressionInFunAdapter();
+      }
+      @Override
+      public Adapter caseTerminalExpressionInFun(TerminalExpressionInFun object)
+      {
+        return createTerminalExpressionInFunAdapter();
+      }
+      @Override
+      public Adapter caseMathFunctionInFun(MathFunctionInFun object)
+      {
+        return createMathFunctionInFunAdapter();
+      }
+      @Override
+      public Adapter caseMathTwoArgInFun(MathTwoArgInFun object)
+      {
+        return createMathTwoArgInFunAdapter();
+      }
+      @Override
+      public Adapter caseMathOneArgInFun(MathOneArgInFun object)
+      {
+        return createMathOneArgInFunAdapter();
+      }
+      @Override
+      public Adapter caseIfStatement(IfStatement object)
+      {
+        return createIfStatementAdapter();
+      }
+      @Override
       public Adapter defaultCase(EObject object)
       {
         return createEObjectAdapter();
@@ -332,6 +377,141 @@ public class FunctionAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createParameterAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.function.function.FunctionCall <em>Call</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.function.function.FunctionCall
+   * @generated
+   */
+  public Adapter createFunctionCallAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.function.function.ParamValues <em>Param Values</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.function.function.ParamValues
+   * @generated
+   */
+  public Adapter createParamValuesAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.function.function.ExpInFun <em>Exp In Fun</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.function.function.ExpInFun
+   * @generated
+   */
+  public Adapter createExpInFunAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.function.function.ExpressionInFun <em>Expression In Fun</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.function.function.ExpressionInFun
+   * @generated
+   */
+  public Adapter createExpressionInFunAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.function.function.TerminalExpressionInFun <em>Terminal Expression In Fun</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.function.function.TerminalExpressionInFun
+   * @generated
+   */
+  public Adapter createTerminalExpressionInFunAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.function.function.MathFunctionInFun <em>Math Function In Fun</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.function.function.MathFunctionInFun
+   * @generated
+   */
+  public Adapter createMathFunctionInFunAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.function.function.MathTwoArgInFun <em>Math Two Arg In Fun</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.function.function.MathTwoArgInFun
+   * @generated
+   */
+  public Adapter createMathTwoArgInFunAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.function.function.MathOneArgInFun <em>Math One Arg In Fun</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.function.function.MathOneArgInFun
+   * @generated
+   */
+  public Adapter createMathOneArgInFunAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.function.function.IfStatement <em>If Statement</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.function.function.IfStatement
+   * @generated
+   */
+  public Adapter createIfStatementAdapter()
   {
     return null;
   }

@@ -37,6 +37,7 @@ public class FunctionParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
+					put(grammarAccess.getStartAccess().getAlternatives(), "rule__Start__Alternatives");
 					put(grammarAccess.getExpWithDefinitionsAccess().getAlternatives(), "rule__ExpWithDefinitions__Alternatives");
 					put(grammarAccess.getExpAccess().getAlternatives(), "rule__Exp__Alternatives");
 					put(grammarAccess.getTerminalExpressionAccess().getAlternatives(), "rule__TerminalExpression__Alternatives");
@@ -44,6 +45,11 @@ public class FunctionParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMathFunctionAccess().getAlternatives(), "rule__MathFunction__Alternatives");
 					put(grammarAccess.getTwoArgFunctionAccess().getAlternatives(), "rule__TwoArgFunction__Alternatives");
 					put(grammarAccess.getOneArgFunctionAccess().getAlternatives(), "rule__OneArgFunction__Alternatives");
+					put(grammarAccess.getParamValuesAccess().getAlternatives(), "rule__ParamValues__Alternatives");
+					put(grammarAccess.getExpInFunAccess().getAlternatives(), "rule__ExpInFun__Alternatives");
+					put(grammarAccess.getTerminalExpressionInFunAccess().getAlternatives(), "rule__TerminalExpressionInFun__Alternatives");
+					put(grammarAccess.getMathFunctionInFunAccess().getAlternatives(), "rule__MathFunctionInFun__Alternatives");
+					put(grammarAccess.getIfTypeAccess().getAlternatives(), "rule__IfType__Alternatives");
 					put(grammarAccess.getXAssignmentAccess().getAlternatives(), "rule__XAssignment__Alternatives");
 					put(grammarAccess.getOpEqualityAccess().getAlternatives(), "rule__OpEquality__Alternatives");
 					put(grammarAccess.getXRelationalExpressionAccess().getAlternatives_1(), "rule__XRelationalExpression__Alternatives_1");
@@ -76,7 +82,7 @@ public class FunctionParser extends AbstractContentAssistParser {
 					put(grammarAccess.getJvmArgumentTypeReferenceAccess().getAlternatives(), "rule__JvmArgumentTypeReference__Alternatives");
 					put(grammarAccess.getJvmWildcardTypeReferenceAccess().getAlternatives_2(), "rule__JvmWildcardTypeReference__Alternatives_2");
 					put(grammarAccess.getJvmTypeParameterAccess().getAlternatives_1(), "rule__JvmTypeParameter__Alternatives_1");
-					put(grammarAccess.getStartAccess().getGroup(), "rule__Start__Group__0");
+					put(grammarAccess.getStartAccess().getGroup_0(), "rule__Start__Group_0__0");
 					put(grammarAccess.getExpressionAccess().getGroup(), "rule__Expression__Group__0");
 					put(grammarAccess.getExpressionAccess().getGroup_0(), "rule__Expression__Group_0__0");
 					put(grammarAccess.getTerminalExpressionAccess().getGroup_0(), "rule__TerminalExpression__Group_0__0");
@@ -85,6 +91,14 @@ public class FunctionParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMathOneArgAccess().getGroup(), "rule__MathOneArg__Group__0");
 					put(grammarAccess.getVariableDefinitionAccess().getGroup(), "rule__VariableDefinition__Group__0");
 					put(grammarAccess.getFunctionDefinitionAccess().getGroup(), "rule__FunctionDefinition__Group__0");
+					put(grammarAccess.getFunctionCallAccess().getGroup(), "rule__FunctionCall__Group__0");
+					put(grammarAccess.getExpressionInFunAccess().getGroup(), "rule__ExpressionInFun__Group__0");
+					put(grammarAccess.getExpressionInFunAccess().getGroup_0(), "rule__ExpressionInFun__Group_0__0");
+					put(grammarAccess.getTerminalExpressionInFunAccess().getGroup_0(), "rule__TerminalExpressionInFun__Group_0__0");
+					put(grammarAccess.getMathTwoArgInFunAccess().getGroup(), "rule__MathTwoArgInFun__Group__0");
+					put(grammarAccess.getMathTwoArgInFunAccess().getGroup_0(), "rule__MathTwoArgInFun__Group_0__0");
+					put(grammarAccess.getMathOneArgInFunAccess().getGroup(), "rule__MathOneArgInFun__Group__0");
+					put(grammarAccess.getIfStatementAccess().getGroup(), "rule__IfStatement__Group__0");
 					put(grammarAccess.getXAssignmentAccess().getGroup_0(), "rule__XAssignment__Group_0__0");
 					put(grammarAccess.getXAssignmentAccess().getGroup_1(), "rule__XAssignment__Group_1__0");
 					put(grammarAccess.getXAssignmentAccess().getGroup_1_1(), "rule__XAssignment__Group_1_1__0");
@@ -233,7 +247,7 @@ public class FunctionParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExpressionAccess().getRightAssignment_1(), "rule__Expression__RightAssignment_1");
 					put(grammarAccess.getTerminalExpressionAccess().getVariableAssignment_1(), "rule__TerminalExpression__VariableAssignment_1");
 					put(grammarAccess.getTerminalExpressionAccess().getValueAssignment_2(), "rule__TerminalExpression__ValueAssignment_2");
-					put(grammarAccess.getTerminalExpressionAccess().getParameterAssignment_3(), "rule__TerminalExpression__ParameterAssignment_3");
+					put(grammarAccess.getTerminalExpressionAccess().getFunctioncallAssignment_3(), "rule__TerminalExpression__FunctioncallAssignment_3");
 					put(grammarAccess.getMathTwoArgAccess().getFunctionAssignment_0_0(), "rule__MathTwoArg__FunctionAssignment_0_0");
 					put(grammarAccess.getMathTwoArgAccess().getLeftAssignment_0_1(), "rule__MathTwoArg__LeftAssignment_0_1");
 					put(grammarAccess.getMathTwoArgAccess().getRightAssignment_1(), "rule__MathTwoArg__RightAssignment_1");
@@ -245,6 +259,25 @@ public class FunctionParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFunctionDefinitionAccess().getParametersAssignment_3(), "rule__FunctionDefinition__ParametersAssignment_3");
 					put(grammarAccess.getFunctionDefinitionAccess().getExpAssignment_6(), "rule__FunctionDefinition__ExpAssignment_6");
 					put(grammarAccess.getParameterAccess().getNameAssignment(), "rule__Parameter__NameAssignment");
+					put(grammarAccess.getFunctionCallAccess().getFuncAssignment_2(), "rule__FunctionCall__FuncAssignment_2");
+					put(grammarAccess.getFunctionCallAccess().getParamvaluesAssignment_3(), "rule__FunctionCall__ParamvaluesAssignment_3");
+					put(grammarAccess.getParamValuesAccess().getValueAssignment_0(), "rule__ParamValues__ValueAssignment_0");
+					put(grammarAccess.getParamValuesAccess().getVariableAssignment_1(), "rule__ParamValues__VariableAssignment_1");
+					put(grammarAccess.getExpressionInFunAccess().getOpAssignment_0_0(), "rule__ExpressionInFun__OpAssignment_0_0");
+					put(grammarAccess.getExpressionInFunAccess().getLeftAssignment_0_1(), "rule__ExpressionInFun__LeftAssignment_0_1");
+					put(grammarAccess.getExpressionInFunAccess().getRightAssignment_1(), "rule__ExpressionInFun__RightAssignment_1");
+					put(grammarAccess.getTerminalExpressionInFunAccess().getValueAssignment_1(), "rule__TerminalExpressionInFun__ValueAssignment_1");
+					put(grammarAccess.getTerminalExpressionInFunAccess().getParameterAssignment_2(), "rule__TerminalExpressionInFun__ParameterAssignment_2");
+					put(grammarAccess.getMathTwoArgInFunAccess().getFunctionAssignment_0_0(), "rule__MathTwoArgInFun__FunctionAssignment_0_0");
+					put(grammarAccess.getMathTwoArgInFunAccess().getLeftAssignment_0_1(), "rule__MathTwoArgInFun__LeftAssignment_0_1");
+					put(grammarAccess.getMathTwoArgInFunAccess().getRightAssignment_1(), "rule__MathTwoArgInFun__RightAssignment_1");
+					put(grammarAccess.getMathOneArgInFunAccess().getFunctionAssignment_0(), "rule__MathOneArgInFun__FunctionAssignment_0");
+					put(grammarAccess.getMathOneArgInFunAccess().getLeftAssignment_1(), "rule__MathOneArgInFun__LeftAssignment_1");
+					put(grammarAccess.getIfStatementAccess().getIftypeAssignment_3(), "rule__IfStatement__IftypeAssignment_3");
+					put(grammarAccess.getIfStatementAccess().getLeftAssignment_4(), "rule__IfStatement__LeftAssignment_4");
+					put(grammarAccess.getIfStatementAccess().getRightAssignment_5(), "rule__IfStatement__RightAssignment_5");
+					put(grammarAccess.getIfStatementAccess().getWhentrueAssignment_7(), "rule__IfStatement__WhentrueAssignment_7");
+					put(grammarAccess.getIfStatementAccess().getWhenfalseAssignment_8(), "rule__IfStatement__WhenfalseAssignment_8");
 					put(grammarAccess.getXAssignmentAccess().getFeatureAssignment_0_1(), "rule__XAssignment__FeatureAssignment_0_1");
 					put(grammarAccess.getXAssignmentAccess().getValueAssignment_0_3(), "rule__XAssignment__ValueAssignment_0_3");
 					put(grammarAccess.getXAssignmentAccess().getFeatureAssignment_1_1_0_0_1(), "rule__XAssignment__FeatureAssignment_1_1_0_0_1");
