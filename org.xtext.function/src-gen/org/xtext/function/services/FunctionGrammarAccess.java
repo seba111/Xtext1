@@ -45,13 +45,14 @@ public class FunctionGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExpWithDefinitionsParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
 		private final Keyword cRightParenthesisKeyword_0_2 = (Keyword)cGroup_0.eContents().get(2);
 		private final RuleCall cFunctionCallParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cIfStatementParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//Start:
 		//
-		//	"(" ExpWithDefinitions ")" | FunctionCall;
+		//	"(" ExpWithDefinitions ")" | FunctionCall | IfStatement;
 		public ParserRule getRule() { return rule; }
 
-		//"(" ExpWithDefinitions ")" | FunctionCall
+		//"(" ExpWithDefinitions ")" | FunctionCall | IfStatement
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//"(" ExpWithDefinitions ")"
@@ -68,6 +69,9 @@ public class FunctionGrammarAccess extends AbstractGrammarElementFinder {
 
 		//FunctionCall
 		public RuleCall getFunctionCallParserRuleCall_1() { return cFunctionCallParserRuleCall_1; }
+
+		//IfStatement
+		public RuleCall getIfStatementParserRuleCall_2() { return cIfStatementParserRuleCall_2; }
 	}
 
 	public class ExpWithDefinitionsElements extends AbstractParserRuleElementFinder {
@@ -127,8 +131,6 @@ public class FunctionGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cRightAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cRightTerminalExpressionParserRuleCall_1_0 = (RuleCall)cRightAssignment_1.eContents().get(0);
 		
-		//// operacje matematyczne 
-		//
 		//Expression:
 		//
 		//	(op=ArithmeticOperation left=TerminalExpression)? right+=TerminalExpression+;
@@ -251,8 +253,6 @@ public class FunctionGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cMathTwoArgParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cMathOneArgParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		//// funkcje matematyczne
-		//
 		//MathFunction:
 		//
 		//	MathTwoArg | MathOneArg;
@@ -368,13 +368,15 @@ public class FunctionGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Keyword cSqrtKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cLogKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cCeilKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		private final Keyword cFloorKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
 		
 		//OneArgFunction:
 		//
-		//	"sqrt" | "log";
+		//	"sqrt" | "log" | "ceil" | "floor";
 		public ParserRule getRule() { return rule; }
 
-		//"sqrt" | "log"
+		//"sqrt" | "log" | "ceil" | "floor"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//"sqrt"
@@ -382,6 +384,12 @@ public class FunctionGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"log"
 		public Keyword getLogKeyword_1() { return cLogKeyword_1; }
+
+		//"ceil"
+		public Keyword getCeilKeyword_2() { return cCeilKeyword_2; }
+
+		//"floor"
+		public Keyword getFloorKeyword_3() { return cFloorKeyword_3; }
 	}
 
 	public class VariableDefinitionElements extends AbstractParserRuleElementFinder {
@@ -434,10 +442,10 @@ public class FunctionGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//FunctionDefinition:
 		//
-		//	"define" "(" name=NAME parameters+=Parameter+ ")" "(" exp=ExpInFun ")";
+		//	"define" "(" name=NAME parameters+=Parameter* ")" "(" exp=ExpInFun ")";
 		public ParserRule getRule() { return rule; }
 
-		//"define" "(" name=NAME parameters+=Parameter+ ")" "(" exp=ExpInFun ")"
+		//"define" "(" name=NAME parameters+=Parameter* ")" "(" exp=ExpInFun ")"
 		public Group getGroup() { return cGroup; }
 
 		//"define"
@@ -452,7 +460,7 @@ public class FunctionGrammarAccess extends AbstractGrammarElementFinder {
 		//NAME
 		public RuleCall getNameNAMETerminalRuleCall_2_0() { return cNameNAMETerminalRuleCall_2_0; }
 
-		//parameters+=Parameter+
+		//parameters+=Parameter*
 		public Assignment getParametersAssignment_3() { return cParametersAssignment_3; }
 
 		//Parameter
@@ -575,8 +583,6 @@ public class FunctionGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cMathFunctionInFunParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cExpressionInFunParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		//// -- elementy ciala funkcji
-		//
 		//ExpInFun:
 		//
 		//	MathFunctionInFun | ExpressionInFun;
@@ -781,25 +787,43 @@ public class FunctionGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cIftypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cIftypeIfTypeParserRuleCall_3_0 = (RuleCall)cIftypeAssignment_3.eContents().get(0);
-		private final Assignment cLeftAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cLeftExpParserRuleCall_4_0 = (RuleCall)cLeftAssignment_4.eContents().get(0);
-		private final Assignment cRightAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cRightExpParserRuleCall_5_0 = (RuleCall)cRightAssignment_5.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cLeftAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cLeftExpParserRuleCall_5_0 = (RuleCall)cLeftAssignment_5.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Assignment cWhentrueAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cWhentrueExpParserRuleCall_7_0 = (RuleCall)cWhentrueAssignment_7.eContents().get(0);
-		private final Assignment cWhenfalseAssignment_8 = (Assignment)cGroup.eContents().get(8);
-		private final RuleCall cWhenfalseExpParserRuleCall_8_0 = (RuleCall)cWhenfalseAssignment_8.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Assignment cRightAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cRightExpParserRuleCall_8_0 = (RuleCall)cRightAssignment_8.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Keyword cRightParenthesisKeyword_10 = (Keyword)cGroup.eContents().get(10);
+		private final Keyword cThenKeyword_11 = (Keyword)cGroup.eContents().get(11);
+		private final Keyword cLeftCurlyBracketKeyword_12 = (Keyword)cGroup.eContents().get(12);
+		private final Keyword cLeftParenthesisKeyword_13 = (Keyword)cGroup.eContents().get(13);
+		private final Assignment cWhentrueAssignment_14 = (Assignment)cGroup.eContents().get(14);
+		private final RuleCall cWhentrueExpParserRuleCall_14_0 = (RuleCall)cWhentrueAssignment_14.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_15 = (Keyword)cGroup.eContents().get(15);
+		private final Keyword cRightCurlyBracketKeyword_16 = (Keyword)cGroup.eContents().get(16);
+		private final Keyword cElseKeyword_17 = (Keyword)cGroup.eContents().get(17);
+		private final Keyword cLeftCurlyBracketKeyword_18 = (Keyword)cGroup.eContents().get(18);
+		private final Keyword cLeftParenthesisKeyword_19 = (Keyword)cGroup.eContents().get(19);
+		private final Assignment cWhenfalseAssignment_20 = (Assignment)cGroup.eContents().get(20);
+		private final RuleCall cWhenfalseExpParserRuleCall_20_0 = (RuleCall)cWhenfalseAssignment_20.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_21 = (Keyword)cGroup.eContents().get(21);
+		private final Keyword cRightCurlyBracketKeyword_22 = (Keyword)cGroup.eContents().get(22);
+		private final Keyword cRightParenthesisKeyword_23 = (Keyword)cGroup.eContents().get(23);
 		
 		//// instrukcja warunkowa
 		//
 		//IfStatement:
 		//
-		//	"(" "if" "(" iftype=IfType left=Exp right=Exp ")" whentrue=Exp whenfalse=Exp ")";
+		//	"(" "if" "(" iftype=IfType "(" left=Exp ")" "(" right=Exp ")" ")" "then" "{" "(" whentrue=Exp ")" "}" "else" "{" "("
+		//
+		//	whenfalse=Exp ")" "}" ")";
 		public ParserRule getRule() { return rule; }
 
-		//"(" "if" "(" iftype=IfType left=Exp right=Exp ")" whentrue=Exp whenfalse=Exp ")"
+		//"(" "if" "(" iftype=IfType "(" left=Exp ")" "(" right=Exp ")" ")" "then" "{" "(" whentrue=Exp ")" "}" "else" "{" "("
+		//
+		//whenfalse=Exp ")" "}" ")"
 		public Group getGroup() { return cGroup; }
 
 		//"("
@@ -817,35 +841,77 @@ public class FunctionGrammarAccess extends AbstractGrammarElementFinder {
 		//IfType
 		public RuleCall getIftypeIfTypeParserRuleCall_3_0() { return cIftypeIfTypeParserRuleCall_3_0; }
 
+		//"("
+		public Keyword getLeftParenthesisKeyword_4() { return cLeftParenthesisKeyword_4; }
+
 		//left=Exp
-		public Assignment getLeftAssignment_4() { return cLeftAssignment_4; }
+		public Assignment getLeftAssignment_5() { return cLeftAssignment_5; }
 
 		//Exp
-		public RuleCall getLeftExpParserRuleCall_4_0() { return cLeftExpParserRuleCall_4_0; }
-
-		//right=Exp
-		public Assignment getRightAssignment_5() { return cRightAssignment_5; }
-
-		//Exp
-		public RuleCall getRightExpParserRuleCall_5_0() { return cRightExpParserRuleCall_5_0; }
+		public RuleCall getLeftExpParserRuleCall_5_0() { return cLeftExpParserRuleCall_5_0; }
 
 		//")"
 		public Keyword getRightParenthesisKeyword_6() { return cRightParenthesisKeyword_6; }
 
-		//whentrue=Exp
-		public Assignment getWhentrueAssignment_7() { return cWhentrueAssignment_7; }
+		//"("
+		public Keyword getLeftParenthesisKeyword_7() { return cLeftParenthesisKeyword_7; }
+
+		//right=Exp
+		public Assignment getRightAssignment_8() { return cRightAssignment_8; }
 
 		//Exp
-		public RuleCall getWhentrueExpParserRuleCall_7_0() { return cWhentrueExpParserRuleCall_7_0; }
-
-		//whenfalse=Exp
-		public Assignment getWhenfalseAssignment_8() { return cWhenfalseAssignment_8; }
-
-		//Exp
-		public RuleCall getWhenfalseExpParserRuleCall_8_0() { return cWhenfalseExpParserRuleCall_8_0; }
+		public RuleCall getRightExpParserRuleCall_8_0() { return cRightExpParserRuleCall_8_0; }
 
 		//")"
 		public Keyword getRightParenthesisKeyword_9() { return cRightParenthesisKeyword_9; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_10() { return cRightParenthesisKeyword_10; }
+
+		//"then"
+		public Keyword getThenKeyword_11() { return cThenKeyword_11; }
+
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_12() { return cLeftCurlyBracketKeyword_12; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_13() { return cLeftParenthesisKeyword_13; }
+
+		//whentrue=Exp
+		public Assignment getWhentrueAssignment_14() { return cWhentrueAssignment_14; }
+
+		//Exp
+		public RuleCall getWhentrueExpParserRuleCall_14_0() { return cWhentrueExpParserRuleCall_14_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_15() { return cRightParenthesisKeyword_15; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_16() { return cRightCurlyBracketKeyword_16; }
+
+		//"else"
+		public Keyword getElseKeyword_17() { return cElseKeyword_17; }
+
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_18() { return cLeftCurlyBracketKeyword_18; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_19() { return cLeftParenthesisKeyword_19; }
+
+		//whenfalse=Exp
+		public Assignment getWhenfalseAssignment_20() { return cWhenfalseAssignment_20; }
+
+		//Exp
+		public RuleCall getWhenfalseExpParserRuleCall_20_0() { return cWhenfalseExpParserRuleCall_20_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_21() { return cRightParenthesisKeyword_21; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_22() { return cRightCurlyBracketKeyword_22; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_23() { return cRightParenthesisKeyword_23; }
 	}
 
 	public class IfTypeElements extends AbstractParserRuleElementFinder {
@@ -954,7 +1020,7 @@ public class FunctionGrammarAccess extends AbstractGrammarElementFinder {
 
 	//Start:
 	//
-	//	"(" ExpWithDefinitions ")" | FunctionCall;
+	//	"(" ExpWithDefinitions ")" | FunctionCall | IfStatement;
 	public StartElements getStartAccess() {
 		return (pStart != null) ? pStart : (pStart = new StartElements());
 	}
@@ -985,8 +1051,6 @@ public class FunctionGrammarAccess extends AbstractGrammarElementFinder {
 		return getExpAccess().getRule();
 	}
 
-	//// operacje matematyczne 
-	//
 	//Expression:
 	//
 	//	(op=ArithmeticOperation left=TerminalExpression)? right+=TerminalExpression+;
@@ -1020,8 +1084,6 @@ public class FunctionGrammarAccess extends AbstractGrammarElementFinder {
 		return getArithmeticOperationAccess().getRule();
 	}
 
-	//// funkcje matematyczne
-	//
 	//MathFunction:
 	//
 	//	MathTwoArg | MathOneArg;
@@ -1068,7 +1130,7 @@ public class FunctionGrammarAccess extends AbstractGrammarElementFinder {
 
 	//OneArgFunction:
 	//
-	//	"sqrt" | "log";
+	//	"sqrt" | "log" | "ceil" | "floor";
 	public OneArgFunctionElements getOneArgFunctionAccess() {
 		return (pOneArgFunction != null) ? pOneArgFunction : (pOneArgFunction = new OneArgFunctionElements());
 	}
@@ -1090,7 +1152,7 @@ public class FunctionGrammarAccess extends AbstractGrammarElementFinder {
 
 	//FunctionDefinition:
 	//
-	//	"define" "(" name=NAME parameters+=Parameter+ ")" "(" exp=ExpInFun ")";
+	//	"define" "(" name=NAME parameters+=Parameter* ")" "(" exp=ExpInFun ")";
 	public FunctionDefinitionElements getFunctionDefinitionAccess() {
 		return (pFunctionDefinition != null) ? pFunctionDefinition : (pFunctionDefinition = new FunctionDefinitionElements());
 	}
@@ -1132,8 +1194,6 @@ public class FunctionGrammarAccess extends AbstractGrammarElementFinder {
 		return getParamValuesAccess().getRule();
 	}
 
-	//// -- elementy ciala funkcji
-	//
 	//ExpInFun:
 	//
 	//	MathFunctionInFun | ExpressionInFun;
@@ -1204,7 +1264,9 @@ public class FunctionGrammarAccess extends AbstractGrammarElementFinder {
 	//
 	//IfStatement:
 	//
-	//	"(" "if" "(" iftype=IfType left=Exp right=Exp ")" whentrue=Exp whenfalse=Exp ")";
+	//	"(" "if" "(" iftype=IfType "(" left=Exp ")" "(" right=Exp ")" ")" "then" "{" "(" whentrue=Exp ")" "}" "else" "{" "("
+	//
+	//	whenfalse=Exp ")" "}" ")";
 	public IfStatementElements getIfStatementAccess() {
 		return (pIfStatement != null) ? pIfStatement : (pIfStatement = new IfStatementElements());
 	}
@@ -1238,69 +1300,7 @@ public class FunctionGrammarAccess extends AbstractGrammarElementFinder {
 		return (tNAME != null) ? tNAME : (tNAME = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "NAME"));
 	} 
 
-	/// * 
-	//
-	//	
-	//
-	//Element:
-	//
-	//	Expression | Num
-	//
-	//;
-	//
-	//
-	//
-	//Num:
-	//
-	//	value=INT
-	//
-	//;
-	//
-	//	
-	//
-	//Expression:
-	//
-	//	'(' Operation  ')';
-	//
-	//	
-	//
-	//Operation:
-	//
-	//	 op=XAdditiveExpression left=Element right=Element 
-	//
-	//;
-	//
-	//
-	//
-	//Function:
-	//
-	//	'define' Designation 	
-	//
-	//;
-	//
-	//
-	//
-	//Designation:
-	//
-	//	Name | Variable
-	//
-	//;
-	//
-	//Name:
-	//
-	//	'(' name=STRING arg=Element ')'
-	//
-	//;
-	//
-	//Variable:
-	//
-	//	name=STRING
-	//
-	//;
-	//
-	//
-	//
-	// * / terminal PARAMNAME:
+	//terminal PARAMNAME:
 	//
 	//	"_" ("a".."z" | "A".."Z") ("a".."z" | "A".."Z")*;
 	public TerminalRule getPARAMNAMERule() {

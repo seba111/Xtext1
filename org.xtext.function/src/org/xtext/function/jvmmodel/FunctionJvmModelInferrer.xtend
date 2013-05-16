@@ -17,6 +17,7 @@ import org.xtext.function.function.MathOneArg
 import org.xtext.function.function.MathTwoArgInFun
 import org.xtext.function.function.MathOneArgInFun
 import org.xtext.function.function.Start
+import org.xtext.function.function.IfStatement
 import org.xtext.function.function.FunctionCall
 import org.xtext.function.function.Parameter
 import org.eclipse.xtext.common.types.util.TypeReferences
@@ -101,8 +102,8 @@ class FunctionJvmModelInferrer extends AbstractModelInferrer {
 			members += toMethod("main",element.newTypeRef(Void::TYPE))[
 				setStatic(true)
 				parameters += toParameter("args",param)
-				body = [		// przechodzimy po wszystkich Expression i sprawdzamy czy dany Expression jest korzeniem wyra¿eñ Expression
-					append( 	//Nastepnie to samo ze wszystkimi elementami Math
+				body = [		
+					append( 	
 						'''
 						«FOR st : element.eAllOfType(typeof(Start))»
 							«readExpressions(st)»
@@ -115,11 +116,11 @@ class FunctionJvmModelInferrer extends AbstractModelInferrer {
 			
 		])
    		}
-   		def protected readExpressions(EObject eob){
+   		def protected readExpressions(EObject eob){ // przechodzimy po wszystkich Expression i sprawdzamy czy dany Expression jest korzeniem wyra¿eñ Expression
    			'''
-   				«FOR ex : eob.eAllOfType(typeof(Expression))»
+   				«FOR ex : eob.eAllOfType(typeof(Expression))» 
 					«IF !ex.eContainer.toString.contains("Expression") && !ex.eContainer.toString.contains("MathTwoArg") 
-					&& !ex.eContainer.toString.contains("MathOneArg")&& !ex.eContainer.toString.contains("FunctionDefinition")» 
+					&& !ex.eContainer.toString.contains("MathOneArg")&& !ex.eContainer.toString.contains("IfStatement")» 
 						double tmp«addOneToCommandNumber()» = «checkType(ex.left)» 
 						«FOR el : ex.right»
 							«ex.op» «checkType(el)» 
@@ -129,14 +130,14 @@ class FunctionJvmModelInferrer extends AbstractModelInferrer {
 				«ENDFOR»
 				«FOR ex : eob.eAllOfType(typeof(MathOneArg))»
 					«IF !ex.eContainer.toString.contains("Expression") && !ex.eContainer.toString.contains("MathTwoArg") 
-					&& !ex.eContainer.toString.contains("MathOneArg")&& !ex.eContainer.toString.contains("FunctionDefinition") » 
+					&& !ex.eContainer.toString.contains("MathOneArg")&& !ex.eContainer.toString.contains("IfStatement") » 
 						double tmp«addOneToCommandNumber()» = «checkType(ex)» 
 						;System.out.println(tmp«numberOfCommand»);
 					«ENDIF»
 				«ENDFOR»
 				«FOR ex : eob.eAllOfType(typeof(MathTwoArg))»
 					«IF !ex.eContainer.toString.contains("Expression") && !ex.eContainer.toString.contains("MathTwoArg") 
-					&& !ex.eContainer.toString.contains("MathOneArg")&& !ex.eContainer.toString.contains("FunctionDefinition") » 
+					&& !ex.eContainer.toString.contains("MathOneArg")&& !ex.eContainer.toString.contains("IfStatement") » 
 						double tmp«addOneToCommandNumber()» = «checkType(ex)» 
 						;System.out.println(tmp«numberOfCommand»);
 					«ENDIF»
@@ -148,14 +149,48 @@ class FunctionJvmModelInferrer extends AbstractModelInferrer {
 					«IF ex.eContainer.toString.contains("Model")»
 						double tmp«addOneToCommandNumber()» = «ex.func.name»(
 						«FOR param : ex.paramvalues»
-	   						«IF param == ex.paramvalues.last»
-	   							«param»
+	   						«IF param == ex.paramvalues.last» 
+	   							«IF param.value != null»
+	   								«param.value»
+	   							«ELSEIF param.variable != null»
+	   								«param.variable.number»
+	   							«ENDIF»
 	   						«ELSE»
-	   							«param»,
+	   							«IF param.value != null»
+	   								«param.value»,
+	   							«ELSEIF param.variable != null»
+	   								«param.variable.number»,
+	   							«ENDIF»
 	   						«ENDIF»
 	   					«ENDFOR» 
 						);System.out.println(tmp«numberOfCommand»);
 					«ENDIF»
+				«ENDFOR»
+				«FOR ex : eob.eAllOfType(typeof(IfStatement))»
+					double tmp«addOneToCommandNumber()»;
+					«IF ex.iftype == 'equal'»
+					if( («checkType(ex.left)») == («checkType(ex.right)»)){
+						tmp«numberOfCommand» = «checkType(ex.whentrue)»	;
+					}else{
+						tmp«numberOfCommand» = «checkType(ex.whenfalse)»;
+					}
+					«ENDIF»
+					«IF ex.iftype == 'greater'»
+					if( («checkType(ex.left)») >= («checkType(ex.right)»)){ 
+						tmp«numberOfCommand» = «checkType(ex.whentrue)»;
+					}else{
+						tmp«numberOfCommand» = «checkType(ex.whenfalse)»;
+					}
+					«ENDIF»
+					«IF ex.iftype == 'less'»
+					if( («checkType(ex.left)») <= («checkType(ex.right)»)){
+						tmp«numberOfCommand» = «checkType(ex.whentrue)»	;
+					}else{
+						tmp«numberOfCommand» = «checkType(ex.whenfalse)»;
+					}
+					«ENDIF»
+					
+					System.out.println(tmp«numberOfCommand»);
 				«ENDFOR»
 			'''	
    		}
@@ -187,6 +222,10 @@ class FunctionJvmModelInferrer extends AbstractModelInferrer {
 	   				(Math.sqrt(«checkType(ob.left)»))
 	   				«ELSEIF ob.function == 'log'»
 	   				(Math.log(«checkType(ob.left)»))
+	   				«ELSEIF ob.function == 'ceil'»
+	   				(Math.ceil(«checkType(ob.left)»))
+	   				«ELSEIF ob.function == 'floor'»
+	   				(Math.floor(«checkType(ob.left)»))
 	   				«ENDIF»
 	   			'''
 	   			TerminalExpression:
@@ -251,6 +290,10 @@ class FunctionJvmModelInferrer extends AbstractModelInferrer {
 	   				(Math.sqrt(«checkTypeInFunction(ob.left)»))
 	   				«ELSEIF ob.function == 'log'»
 	   				(Math.log(«checkTypeInFunction(ob.left)»))
+	   				«ELSEIF ob.function == 'ceil'»
+	   				(Math.ceil(«checkTypeInFunction(ob.left)»))
+	   				«ELSEIF ob.function == 'floor'»
+	   				(Math.floor(«checkTypeInFunction(ob.left)»))
 	   				«ENDIF»
 	   			'''
 	   			TerminalExpressionInFun:
@@ -270,38 +313,75 @@ class FunctionJvmModelInferrer extends AbstractModelInferrer {
 		}	  		
    	}
    	
-   	/*    int a = (int) (1 + Math.PI);
-    a = Math.max(1, 2);
-    a = Math.min(1, 2);
-    a = (int) Math.pow(1, 2);
-    a = (int) Math.sqrt(2);
-    a = (int) Math.log(1);
-    * 
-    * Dodawanie i odejmowanie stringów;
-    String t = "ala";
-    String g = "a";
-    t = t.replaceAll("la", "");
 
- //   t=t+g;
-    System.out.println(t); 
-    * 
-    * Porównania zwracaj¹ce bool
-    * (equal? X Y)
-    * (less? X Y)
-    * (greater? X Y)
-    * 
-    * 
-    * definicja zmiennej
-    * (define nasze_pi 3.14)
-    * 
-    * definicja funkcji
-    * (define (ObwodKola promien) (* 2 nasze_pi promien)))
-    * 
-    * wywo³anie funkcji
-    * (ObwodKola 7)
-    * 
-    * */
    	
-   	
+/* przyk³adowy kod
+ * 
+ 
 
+(+ 1.0 2.0)
+(- 1.0 2.0)
+(* 1.0 2.0)
+(/ 1.0 2.0)
+ 
+(min 1.0 2.0)
+(max 1.0 2.0)
+(pow 1.0 2.0)
+(sqrt 2.0)
+(log 2.0)
+(ceil 11.8)
+(floor 11.8)
+
+(+ 
+	(pow 
+		1.0 
+		(log 2.0)
+	) 
+	2.0
+)
+(+ (pow 1.0 (log 2.0)) 2.0)
+
+(define Zmienna 9.0)
+(define Zmiennaa 10.0)
+
+(+ 2.0 Zmienna)
+
+
+(define (NazwaFunkcji _paramA _paramB)
+	(+ 
+		4.0 
+		(pow _paramA _paramB)
+	)
+) 
+(define (FunkcjaBezParametrow)
+	(* 
+		(ceil (log 2.0))
+		(pow 1.0 1.0)
+	)
+) 
+
+
+(call NazwaFunkcji 2.0 Zmienna) 
+          
+                     
+(+ 
+	Zmienna 
+	(max 
+		(call NazwaFunkcji Zmienna 4.0) 
+		(call NazwaFunkcji 3.0 1.0)  
+	)
+) 
+
+
+
+( if 
+	(equal (+ Zmienna 1.0) (- 3.0 1.0))
+	then{
+		(+ 1.0 1.0)
+	}
+	else{
+		(pow 2.0 (call NazwaFunkcji 2.0 1.0))		
+	}   
+)
+ */
 

@@ -29,5 +29,12 @@ class ValidationTests {
 		(define(Fun _a) (* _a _a)) 
 		(define(Fun _a _b) (+ _b _a))
 		'''.parse.assertError(FUNCTION_DEFINITION,"101")
-	} 	
+	}
+		@Test
+	def testNumberOfParameters(){
+		'''
+		(define(Fun _a) (* _a _a)) 
+		(call Fun 1.0 1.0)
+		'''.parse.assertError(FUNCTION_CALL,"102")
+	} 	 	
 }

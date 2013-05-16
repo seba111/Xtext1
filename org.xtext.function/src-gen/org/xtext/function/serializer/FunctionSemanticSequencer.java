@@ -110,7 +110,8 @@ public class FunctionSemanticSequencer extends XbaseSemanticSequencer {
 				}
 				else break;
 			case FunctionPackage.IF_STATEMENT:
-				if(context == grammarAccess.getIfStatementRule()) {
+				if(context == grammarAccess.getIfStatementRule() ||
+				   context == grammarAccess.getStartRule()) {
 					sequence_IfStatement(context, (IfStatement) semanticObject); 
 					return; 
 				}
@@ -1082,7 +1083,7 @@ public class FunctionSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (name=NAME parameters+=Parameter+ exp=ExpInFun)
+	 *     (name=NAME parameters+=Parameter* exp=ExpInFun)
 	 */
 	protected void sequence_FunctionDefinition(EObject context, FunctionDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1109,10 +1110,10 @@ public class FunctionSemanticSequencer extends XbaseSemanticSequencer {
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getIfStatementAccess().getIftypeIfTypeParserRuleCall_3_0(), semanticObject.getIftype());
-		feeder.accept(grammarAccess.getIfStatementAccess().getLeftExpParserRuleCall_4_0(), semanticObject.getLeft());
-		feeder.accept(grammarAccess.getIfStatementAccess().getRightExpParserRuleCall_5_0(), semanticObject.getRight());
-		feeder.accept(grammarAccess.getIfStatementAccess().getWhentrueExpParserRuleCall_7_0(), semanticObject.getWhentrue());
-		feeder.accept(grammarAccess.getIfStatementAccess().getWhenfalseExpParserRuleCall_8_0(), semanticObject.getWhenfalse());
+		feeder.accept(grammarAccess.getIfStatementAccess().getLeftExpParserRuleCall_5_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getIfStatementAccess().getRightExpParserRuleCall_8_0(), semanticObject.getRight());
+		feeder.accept(grammarAccess.getIfStatementAccess().getWhentrueExpParserRuleCall_14_0(), semanticObject.getWhentrue());
+		feeder.accept(grammarAccess.getIfStatementAccess().getWhenfalseExpParserRuleCall_20_0(), semanticObject.getWhenfalse());
 		feeder.finish();
 	}
 	

@@ -143,6 +143,16 @@ ruleStart returns [EObject current=null]
         $current = $this_FunctionCall_3.current; 
         afterParserOrEnumRuleCall();
     }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getStartAccess().getIfStatementParserRuleCall_2()); 
+    }
+    this_IfStatement_4=ruleIfStatement
+    { 
+        $current = $this_IfStatement_4.current; 
+        afterParserOrEnumRuleCall();
+    }
 )
 ;
 
@@ -693,6 +703,20 @@ ruleOneArgFunction returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRule
         $current.merge(kw);
         newLeafNode(kw, grammarAccess.getOneArgFunctionAccess().getLogKeyword_1()); 
     }
+
+    |
+	kw='ceil' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getOneArgFunctionAccess().getCeilKeyword_2()); 
+    }
+
+    |
+	kw='floor' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getOneArgFunctionAccess().getFloorKeyword_3()); 
+    }
 )
     ;
 
@@ -819,7 +843,7 @@ ruleFunctionDefinition returns [EObject current=null]
 	    }
 
 )
-)+	otherlv_4=')' 
+)*	otherlv_4=')' 
     {
     	newLeafNode(otherlv_4, grammarAccess.getFunctionDefinitionAccess().getRightParenthesisKeyword_4());
     }
@@ -1367,6 +1391,191 @@ ruleMathOneArgInFun returns [EObject current=null]
 ;
 
 
+
+
+
+// Entry rule entryRuleIfStatement
+entryRuleIfStatement returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getIfStatementRule()); }
+	 iv_ruleIfStatement=ruleIfStatement 
+	 { $current=$iv_ruleIfStatement.current; } 
+	 EOF 
+;
+
+// Rule IfStatement
+ruleIfStatement returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='(' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getIfStatementAccess().getLeftParenthesisKeyword_0());
+    }
+	otherlv_1='if' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getIfStatementAccess().getIfKeyword_1());
+    }
+	otherlv_2='(' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getIfStatementAccess().getLeftParenthesisKeyword_2());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getIfStatementAccess().getIftypeIfTypeParserRuleCall_3_0()); 
+	    }
+		lv_iftype_3_0=ruleIfType		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getIfStatementRule());
+	        }
+       		set(
+       			$current, 
+       			"iftype",
+        		lv_iftype_3_0, 
+        		"IfType");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_4='(' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getIfStatementAccess().getLeftParenthesisKeyword_4());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getIfStatementAccess().getLeftExpParserRuleCall_5_0()); 
+	    }
+		lv_left_5_0=ruleExp		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getIfStatementRule());
+	        }
+       		set(
+       			$current, 
+       			"left",
+        		lv_left_5_0, 
+        		"Exp");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_6=')' 
+    {
+    	newLeafNode(otherlv_6, grammarAccess.getIfStatementAccess().getRightParenthesisKeyword_6());
+    }
+	otherlv_7='(' 
+    {
+    	newLeafNode(otherlv_7, grammarAccess.getIfStatementAccess().getLeftParenthesisKeyword_7());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getIfStatementAccess().getRightExpParserRuleCall_8_0()); 
+	    }
+		lv_right_8_0=ruleExp		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getIfStatementRule());
+	        }
+       		set(
+       			$current, 
+       			"right",
+        		lv_right_8_0, 
+        		"Exp");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_9=')' 
+    {
+    	newLeafNode(otherlv_9, grammarAccess.getIfStatementAccess().getRightParenthesisKeyword_9());
+    }
+	otherlv_10=')' 
+    {
+    	newLeafNode(otherlv_10, grammarAccess.getIfStatementAccess().getRightParenthesisKeyword_10());
+    }
+	otherlv_11='then' 
+    {
+    	newLeafNode(otherlv_11, grammarAccess.getIfStatementAccess().getThenKeyword_11());
+    }
+	otherlv_12='{' 
+    {
+    	newLeafNode(otherlv_12, grammarAccess.getIfStatementAccess().getLeftCurlyBracketKeyword_12());
+    }
+	otherlv_13='(' 
+    {
+    	newLeafNode(otherlv_13, grammarAccess.getIfStatementAccess().getLeftParenthesisKeyword_13());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getIfStatementAccess().getWhentrueExpParserRuleCall_14_0()); 
+	    }
+		lv_whentrue_14_0=ruleExp		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getIfStatementRule());
+	        }
+       		set(
+       			$current, 
+       			"whentrue",
+        		lv_whentrue_14_0, 
+        		"Exp");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_15=')' 
+    {
+    	newLeafNode(otherlv_15, grammarAccess.getIfStatementAccess().getRightParenthesisKeyword_15());
+    }
+	otherlv_16='}' 
+    {
+    	newLeafNode(otherlv_16, grammarAccess.getIfStatementAccess().getRightCurlyBracketKeyword_16());
+    }
+	otherlv_17='else' 
+    {
+    	newLeafNode(otherlv_17, grammarAccess.getIfStatementAccess().getElseKeyword_17());
+    }
+	otherlv_18='{' 
+    {
+    	newLeafNode(otherlv_18, grammarAccess.getIfStatementAccess().getLeftCurlyBracketKeyword_18());
+    }
+	otherlv_19='(' 
+    {
+    	newLeafNode(otherlv_19, grammarAccess.getIfStatementAccess().getLeftParenthesisKeyword_19());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getIfStatementAccess().getWhenfalseExpParserRuleCall_20_0()); 
+	    }
+		lv_whenfalse_20_0=ruleExp		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getIfStatementRule());
+	        }
+       		set(
+       			$current, 
+       			"whenfalse",
+        		lv_whenfalse_20_0, 
+        		"Exp");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_21=')' 
+    {
+    	newLeafNode(otherlv_21, grammarAccess.getIfStatementAccess().getRightParenthesisKeyword_21());
+    }
+	otherlv_22='}' 
+    {
+    	newLeafNode(otherlv_22, grammarAccess.getIfStatementAccess().getRightCurlyBracketKeyword_22());
+    }
+	otherlv_23=')' 
+    {
+    	newLeafNode(otherlv_23, grammarAccess.getIfStatementAccess().getRightParenthesisKeyword_23());
+    }
+)
+;
 
 
 

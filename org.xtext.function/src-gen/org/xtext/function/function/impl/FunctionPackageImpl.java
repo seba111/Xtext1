@@ -919,6 +919,7 @@ public class FunctionPackageImpl extends EPackageImpl implements FunctionPackage
     mathFunctionInFunEClass.getESuperTypes().add(this.getExpInFun());
     mathTwoArgInFunEClass.getESuperTypes().add(this.getMathFunctionInFun());
     mathOneArgInFunEClass.getESuperTypes().add(this.getMathFunctionInFun());
+    ifStatementEClass.getESuperTypes().add(this.getStart());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

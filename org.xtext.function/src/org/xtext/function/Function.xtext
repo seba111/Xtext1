@@ -1,13 +1,12 @@
 grammar org.xtext.function.Function with org.eclipse.xtext.xbase.Xbase
-// jêzyk dziedzinowy do rozwi¹zywania prostych obliczeñ matamatycznych, oparty na jêzykach funkcyjnych o sk³adni opartej
-// g³ównie na jêzyku scheme
+
 generate function "http://www.xtext.org/function/Function"
 
 Model:
 	elements+=Start*;
 
 Start:
-	'('ExpWithDefinitions')'| FunctionCall
+	'('ExpWithDefinitions')'| FunctionCall | IfStatement
 ;
 
 ExpWithDefinitions:
@@ -16,7 +15,6 @@ ExpWithDefinitions:
 Exp:
 	=>MathFunction | Expression 
 ;
-// operacje matematyczne 
 Expression :
 	 (op=ArithmeticOperation left=TerminalExpression)? (right+=TerminalExpression)+ 
 ;
@@ -26,7 +24,6 @@ TerminalExpression:
 ArithmeticOperation:
 	'+'|'-'|'/'|'*'
 ;
-// funkcje matematyczne
 MathFunction:
 	MathTwoArg | MathOneArg
 ;
@@ -41,13 +38,13 @@ TwoArgFunction:
 	'max'|'min' | 'pow'
 ;
 OneArgFunction:
-	'sqrt'| 'log'
+	'sqrt'| 'log' | 'ceil' |'floor'
 ;
 VariableDefinition:
 	'define' name=NAME number=DOUBLE
 ;
 FunctionDefinition:
-	'define' '(' name=NAME parameters+=Parameter+ ')' '(' exp=ExpInFun ')'
+	'define' '(' name=NAME parameters+=Parameter* ')' '(' exp=ExpInFun ')'
 ;
 Parameter:
 	name=PARAMNAME
@@ -58,7 +55,6 @@ FunctionCall:
 ParamValues:
 	value=DOUBLE | variable=[VariableDefinition|NAME]
 ;
-// -- elementy ciala funkcji
 ExpInFun:
 	=>MathFunctionInFun | ExpressionInFun 
 ;
@@ -80,7 +76,7 @@ MathOneArgInFun:
 
 // instrukcja warunkowa
 IfStatement:
-	'(' 'if' '(' iftype=IfType left=Exp right=Exp ')' whentrue=Exp whenfalse=Exp ')'
+	'(' 'if' '(' iftype=IfType '(' left=Exp ')' '(' right=Exp ')' ')' 'then' '{' '(' whentrue=Exp ')' '}' 'else' '{' '(' whenfalse=Exp ')' '}' ')'
 ;
 IfType:
 	'equal' | 'less' | 'greater'
@@ -96,35 +92,3 @@ terminal PARAMNAME:
 ;
 
 
-/* 
-	
-Element:
-	Expression | Num
-;
-
-Num:
-	value=INT
-;
-	
-Expression:
-	'(' Operation  ')';
-	
-Operation:
-	 op=XAdditiveExpression left=Element right=Element 
-;
-
-Function:
-	'define' Designation 	
-;
-
-Designation:
-	Name | Variable
-;
-Name:
-	'(' name=STRING arg=Element ')'
-;
-Variable:
-	name=STRING
-;
-
-*/

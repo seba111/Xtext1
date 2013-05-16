@@ -1020,7 +1020,7 @@ public interface FunctionPackage extends EPackage
    * @generated
    * @ordered
    */
-  int IF_STATEMENT__IFTYPE = 0;
+  int IF_STATEMENT__IFTYPE = START_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1029,7 +1029,7 @@ public interface FunctionPackage extends EPackage
    * @generated
    * @ordered
    */
-  int IF_STATEMENT__LEFT = 1;
+  int IF_STATEMENT__LEFT = START_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Right</b></em>' containment reference.
@@ -1038,7 +1038,7 @@ public interface FunctionPackage extends EPackage
    * @generated
    * @ordered
    */
-  int IF_STATEMENT__RIGHT = 2;
+  int IF_STATEMENT__RIGHT = START_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>Whentrue</b></em>' containment reference.
@@ -1047,7 +1047,7 @@ public interface FunctionPackage extends EPackage
    * @generated
    * @ordered
    */
-  int IF_STATEMENT__WHENTRUE = 3;
+  int IF_STATEMENT__WHENTRUE = START_FEATURE_COUNT + 3;
 
   /**
    * The feature id for the '<em><b>Whenfalse</b></em>' containment reference.
@@ -1056,7 +1056,7 @@ public interface FunctionPackage extends EPackage
    * @generated
    * @ordered
    */
-  int IF_STATEMENT__WHENFALSE = 4;
+  int IF_STATEMENT__WHENFALSE = START_FEATURE_COUNT + 4;
 
   /**
    * The number of structural features of the '<em>If Statement</em>' class.
@@ -1065,7 +1065,7 @@ public interface FunctionPackage extends EPackage
    * @generated
    * @ordered
    */
-  int IF_STATEMENT_FEATURE_COUNT = 5;
+  int IF_STATEMENT_FEATURE_COUNT = START_FEATURE_COUNT + 5;
 
 
   /**

@@ -26,8 +26,6 @@ public class ParserTests {
 	  private ValidationTestHelper _validationTestHelper;
 	
 	private Model model;
-	private Model model2;
-	private ArrayList<String> list;
 	
 	@Before
 	public void prepare(){
@@ -46,19 +44,16 @@ public class ParserTests {
 	@Test
 	public void test1(){			
 		int numberOfElements = 0;
-		list = new ArrayList<String>();
 		for(EObject par : model.eContents()){
 			numberOfElements++;
-			list.add(par.getClass().toString());
-//				if(par instanceof FunctionDefinition){
-//				}
 		}
-			// sprawdzenie czy parser odpowiednio rozpoznaje iloœæ elementów
 		Assert.assertEquals(3, numberOfElements);
-		//	Assert.assertThat("class org.xtext.function.function.impl.MathOneArgImpl", list);
-
 
 	}
+	
+	
+	
+	
 	
 	/*
 	@Test

@@ -2,7 +2,6 @@
  */
 package org.xtext.function.function;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface IfStatement extends EObject
+public interface IfStatement extends Start
 {
   /**
    * Returns the value of the '<em><b>Iftype</b></em>' attribute.

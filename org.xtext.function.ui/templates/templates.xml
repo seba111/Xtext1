@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<templates>
+<template
+	id="template_01"  
+	autoinsert="true"
+	context="org.xtext.function.Function.FunctionCall" 
+	deleted="false" 
+	description="Wstaw szablon definicji funkcji" 
+	enabled="true" 
+	name="FunctionDefinition">(define ( ${name} ${parameters})&#13;
+	${expressions}&#13;
+)&#13;
+</template>
+<template
+	id="template_02" 
+	autoinsert="true" 
+	context="org.xtext.function.Function.IfStatement" 
+	deleted="false" 
+	description="Wstaw szablon instrukcji if" 
+	enabled="true" 
+	name="IfStatement">(if&#13;
+	( ${Instruction} ${Left} ${Right})&#13;
+	then{&#13;
+		${WhenTrue}	&#13;
+	}&#13;
+	else{&#13;
+		${WhenFalse}	&#13;
+	}	&#13;
+)</template>
+</templates>

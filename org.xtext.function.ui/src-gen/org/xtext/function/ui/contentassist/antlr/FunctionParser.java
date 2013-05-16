@@ -274,10 +274,10 @@ public class FunctionParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMathOneArgInFunAccess().getFunctionAssignment_0(), "rule__MathOneArgInFun__FunctionAssignment_0");
 					put(grammarAccess.getMathOneArgInFunAccess().getLeftAssignment_1(), "rule__MathOneArgInFun__LeftAssignment_1");
 					put(grammarAccess.getIfStatementAccess().getIftypeAssignment_3(), "rule__IfStatement__IftypeAssignment_3");
-					put(grammarAccess.getIfStatementAccess().getLeftAssignment_4(), "rule__IfStatement__LeftAssignment_4");
-					put(grammarAccess.getIfStatementAccess().getRightAssignment_5(), "rule__IfStatement__RightAssignment_5");
-					put(grammarAccess.getIfStatementAccess().getWhentrueAssignment_7(), "rule__IfStatement__WhentrueAssignment_7");
-					put(grammarAccess.getIfStatementAccess().getWhenfalseAssignment_8(), "rule__IfStatement__WhenfalseAssignment_8");
+					put(grammarAccess.getIfStatementAccess().getLeftAssignment_5(), "rule__IfStatement__LeftAssignment_5");
+					put(grammarAccess.getIfStatementAccess().getRightAssignment_8(), "rule__IfStatement__RightAssignment_8");
+					put(grammarAccess.getIfStatementAccess().getWhentrueAssignment_14(), "rule__IfStatement__WhentrueAssignment_14");
+					put(grammarAccess.getIfStatementAccess().getWhenfalseAssignment_20(), "rule__IfStatement__WhenfalseAssignment_20");
 					put(grammarAccess.getXAssignmentAccess().getFeatureAssignment_0_1(), "rule__XAssignment__FeatureAssignment_0_1");
 					put(grammarAccess.getXAssignmentAccess().getValueAssignment_0_3(), "rule__XAssignment__ValueAssignment_0_3");
 					put(grammarAccess.getXAssignmentAccess().getFeatureAssignment_1_1_0_0_1(), "rule__XAssignment__FeatureAssignment_1_1_0_0_1");

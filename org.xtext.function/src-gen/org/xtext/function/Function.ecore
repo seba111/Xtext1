@@ -74,7 +74,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MathOneArgInFun" eSuperTypes="#//MathFunctionInFun"/>
-  <eClassifiers xsi:type="ecore:EClass" name="IfStatement">
+  <eClassifiers xsi:type="ecore:EClass" name="IfStatement" eSuperTypes="#//Start">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="iftype" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Exp" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Exp" containment="true"/>

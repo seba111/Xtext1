@@ -254,6 +254,7 @@ public class FunctionSwitch<T> extends Switch<T>
       {
         IfStatement ifStatement = (IfStatement)theEObject;
         T result = caseIfStatement(ifStatement);
+        if (result == null) result = caseStart(ifStatement);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }

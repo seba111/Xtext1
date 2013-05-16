@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.function.function.Exp;
 import org.xtext.function.function.FunctionPackage;
@@ -32,7 +31,7 @@ import org.xtext.function.function.IfStatement;
  *
  * @generated
  */
-public class IfStatementImpl extends MinimalEObjectImpl.Container implements IfStatement
+public class IfStatementImpl extends StartImpl implements IfStatement
 {
   /**
    * The default value of the '{@link #getIftype() <em>Iftype</em>}' attribute.
