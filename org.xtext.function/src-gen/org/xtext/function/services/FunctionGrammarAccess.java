@@ -813,8 +813,7 @@ public class FunctionGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_23 = (Keyword)cGroup.eContents().get(23);
 		
 		//// instrukcja warunkowa
-		//
-		//IfStatement:
+		// IfStatement:
 		//
 		//	"(" "if" "(" iftype=IfType "(" left=Exp ")" "(" right=Exp ")" ")" "then" "{" "(" whentrue=Exp ")" "}" "else" "{" "("
 		//
@@ -1261,8 +1260,7 @@ public class FunctionGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// instrukcja warunkowa
-	//
-	//IfStatement:
+	// IfStatement:
 	//
 	//	"(" "if" "(" iftype=IfType "(" left=Exp ")" "(" right=Exp ")" ")" "then" "{" "(" whentrue=Exp ")" "}" "else" "{" "("
 	//
@@ -1288,7 +1286,7 @@ public class FunctionGrammarAccess extends AbstractGrammarElementFinder {
 
 	//terminal DOUBLE:
 	//
-	//	"0".."9"+ "." "0".."9"+;
+	//	"-"? "0".."9"+ "." "0".."9"+;
 	public TerminalRule getDOUBLERule() {
 		return (tDOUBLE != null) ? tDOUBLE : (tDOUBLE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DOUBLE"));
 	} 

@@ -6370,7 +6370,7 @@ ruleValidID returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()
 
 
 
-RULE_DOUBLE : ('0'..'9')+ '.' ('0'..'9')+;
+RULE_DOUBLE : '-'? ('0'..'9')+ '.' ('0'..'9')+;
 
 RULE_NAME : ('a'..'z'|'A'..'Z')*;
 

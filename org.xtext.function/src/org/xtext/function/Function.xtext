@@ -82,7 +82,7 @@ IfType:
 	'equal' | 'less' | 'greater'
 ;
 terminal DOUBLE:
-	('0'..'9')+'.'('0'..'9')+
+	'-'?('0'..'9')+'.'('0'..'9')+
 ;
 terminal NAME:
 	('a'..'z'|'A'..'Z')*
