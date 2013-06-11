@@ -89,9 +89,21 @@ class FunctionJvmModelInferrer extends AbstractModelInferrer {
 									«FOR el : ex.right»
 										«ex.op» «checkTypeInFunction(el)» 
 									«ENDFOR»
+									;return tmp«numberOfCommand»;
 								«ENDIF»						
 							«ENDFOR»
-							;return tmp«numberOfCommand»;
+							«FOR ex : fd.eAllOfType(typeof(MathTwoArgInFun))»															
+								«IF ex.eContainer.toString.contains("FunctionDefinition")»
+									double tmp«addOneToCommandNumber()» = «checkTypeInFunction(ex)» 
+									;return tmp«numberOfCommand»;
+								«ENDIF»						
+							«ENDFOR»
+							«FOR ex : fd.eAllOfType(typeof(MathOneArgInFun))»															
+								«IF ex.eContainer.toString.contains("FunctionDefinition")»
+									double tmp«addOneToCommandNumber()» = «checkTypeInFunction(ex)» 
+									;return tmp«numberOfCommand»;
+								«ENDIF»						
+							«ENDFOR»
 						'''
 					)
 				]
