@@ -5,6 +5,7 @@ import org.xtext.function.FunctionUiInjectorProvider;
 import org.xtext.function.function.FunctionDefinition;
 import org.xtext.function.function.Model;
 import org.xtext.function.function.Expression;
+import org.xtext.function.function.MathOneArg;
 import org.eclipse.xtext.junit4.InjectWith;
 import org.eclipse.xtext.junit4.XtextRunner;
 import org.eclipse.xtext.junit4.util.ParseHelper;
@@ -43,14 +44,16 @@ public class ParserTests {
 	
 	@Test
 	public void test1(){			
-		int numberOfElements = 0;
-		for(EObject par : model.eContents()){
-			numberOfElements++;
-		}
-		Assert.assertEquals(3, numberOfElements);
-
+		Assert.assertEquals(3, model.eContents().size());
 	}
-	
+	@Test
+	public void test2(){
+		for(EObject el : model.eContents()){
+			if(el instanceof MathOneArg){				
+				Assert.assertEquals("2.0", ((MathOneArg) el).getLeft().getValue());
+			}
+		}
+	}	
 	
 	
 	

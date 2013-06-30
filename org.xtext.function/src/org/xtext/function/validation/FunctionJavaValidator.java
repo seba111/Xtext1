@@ -6,7 +6,9 @@ import org.xtext.function.function.FunctionDefinition;
 import org.xtext.function.function.FunctionCall;
 import org.xtext.function.function.Parameter;
 import org.xtext.function.function.ParamValues;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+
  
 
 public class FunctionJavaValidator extends AbstractFunctionJavaValidator {
@@ -15,10 +17,10 @@ public class FunctionJavaValidator extends AbstractFunctionJavaValidator {
 	@Check
 	public void checkFunctionNameIsNotDuplicated(FunctionDefinition fd){
 		FunctionDefinition temporaryFd;
-		org.eclipse.emf.ecore.EObject tmp = fd.eContainer();
-		for(EObject par : tmp.eContents()){
-			if(par instanceof FunctionDefinition){
-				temporaryFd = (FunctionDefinition)par;
+		EObject tmp = fd.eContainer();
+		for(EObject ob : tmp.eContents()){
+			if(ob instanceof FunctionDefinition){
+				temporaryFd = (FunctionDefinition)ob;
 				if(fd.hashCode() != temporaryFd.hashCode()){
 					if(fd.getName().equals(temporaryFd.getName())){
 						error("Nazwa funkcji nie mo¿e siê powtarzaæ", FunctionPackage.Literals.FUNCTION_DEFINITION__NAME,"101","DuplicatedName");
@@ -30,19 +32,16 @@ public class FunctionJavaValidator extends AbstractFunctionJavaValidator {
 	}
 	
 	@Check
-	public void checkFunctionCallHasCorrectNumberOfParameters(FunctionCall fc){
-		int functionParameters = 0;
-		int givenParameters = 0;
-		for(Parameter par : fc.getFunc().getParameters()){
-			functionParameters++;
-		}
-		for(ParamValues pv: fc.getParamvalues()){
-			givenParameters++;
-		}
+	public void checkNumberOfParameters(FunctionCall fc){
+		int functionParameters;
+		int givenParameters;
+		EList<Parameter> params = fc.getFunc().getParameters();
+		functionParameters = params.size();
+		EList<ParamValues> paramValues = fc.getParamvalues();
+		givenParameters = paramValues.size();
 		if(functionParameters != givenParameters){
 			error("Niezgodna iloœæ parametrów ( dana funkcja posiada ich "+functionParameters+" )", FunctionPackage.Literals.FUNCTION_CALL__PARAMVALUES,"102","WrongParamNumbers");
-		}
-		
+		}		
 	}
 	
 	

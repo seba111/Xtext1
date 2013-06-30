@@ -4,11 +4,35 @@
 package org.xtext.function.ui.outline;
 
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
+import org.xtext.function.function.MathOneArg;
+import org.xtext.function.function.MathTwoArg;
+import org.xtext.function.function.VariableDefinition;
+import org.xtext.function.function.FunctionCall;
+import org.xtext.function.function.Expression;
+import org.xtext.function.function.IfStatement;
 
 /**
  * customization of the default outline structure
  * 
  */
 public class FunctionOutlineTreeProvider extends DefaultOutlineTreeProvider {
-	
+
+	public Object _text(MathOneArg moa) {		
+		return "MathOneArg";
+	}
+	public Object _text(MathTwoArg mta) {		
+		return "MathTwoArg";
+	}
+	public Object _text(VariableDefinition mta) {		
+		return "VariableDefinition";
+	}
+	public Object _text(FunctionCall fc) {		
+		return "FunctionCall";
+	}
+	public Object _text(Expression ex) {		
+		return "Operation";
+	}
+	public Object _text(IfStatement is) {		
+		return "IfStatement: "+ is.getIftype();
+	}
 }

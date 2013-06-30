@@ -3,8 +3,12 @@
  */
 package org.xtext.function.formatting;
 
+import org.eclipse.xtext.CrossReference;
+import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.formatting.impl.AbstractDeclarativeFormatter;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
+import org.xtext.function.services.FunctionGrammarAccess;
+
 
 /**
  * This class contains custom formatting description.
@@ -18,10 +22,66 @@ public class FunctionFormatter extends AbstractDeclarativeFormatter {
 	
 	@Override
 	protected void configureFormatting(FormattingConfig c) {
-// It's usually a good idea to activate the following three statements.
-// They will add and preserve newlines around comments
-//		c.setLinewrap(0, 1, 2).before(getGrammarAccess().getSL_COMMENTRule());
-//		c.setLinewrap(0, 1, 2).before(getGrammarAccess().getML_COMMENTRule());
-//		c.setLinewrap(0, 1, 1).after(getGrammarAccess().getML_COMMENTRule());
+		
+		FunctionGrammarAccess f = (FunctionGrammarAccess) getGrammarAccess();
+				
+
+		//definicja zmiennej
+		c.setNoLinewrap().after(f.getVariableDefinitionAccess().getNumberDOUBLETerminalRuleCall_2_0());
+		c.setIndentationIncrement().after(f.getVariableDefinitionAccess().getNumberDOUBLETerminalRuleCall_2_0());
+		
+		
+		//definicja funkcji
+		c.setLinewrap().before(f.getFunctionDefinitionAccess().getLeftParenthesisKeyword_1());
+		c.setIndentationIncrement().before(f.getFunctionDefinitionAccess().getLeftParenthesisKeyword_1());
+		c.setIndentationIncrement().after(f.getFunctionDefinitionAccess().getRightParenthesisKeyword_4());
+		for (CrossReference kw : f.findCrossReferences(f.getParameterRule())) {
+			c.setLinewrap().after(kw);
+		}
+		
+		
+		// if
+		/*
+		for (Keyword kw : f.findKeywords("if")) {
+			c.setIndentationIncrement().after(kw);
+			c.setLinewrap().after(kw);
+		}	
+		c.setIndentationIncrement().before(f.getIfStatementAccess().getRightParenthesisKeyword_10());
+		c.setIndentationIncrement().before(f.getIfStatementAccess().getRightParenthesisKeyword_15());
+		c.setIndentationIncrement().before(f.getIfStatementAccess().getRightParenthesisKeyword_21());
+		
+		c.setIndentationIncrement().before(f.getIfStatementAccess().getRightParenthesisKeyword_23());
+		c.setIndentationIncrement().before(f.getIfStatementAccess().getRightParenthesisKeyword_6());
+		c.setIndentationIncrement().before(f.getIfStatementAccess().getRightParenthesisKeyword_9());
+		
+		c.setIndentationIncrement().after(f.getIfStatementAccess().getLeftCurlyBracketKeyword_12());
+		c.setLinewrap().after(f.getIfStatementAccess().getLeftCurlyBracketKeyword_12());
+		c.setIndentationDecrement().before(f.getIfStatementAccess().getLeftCurlyBracketKeyword_12());
+		c.setLinewrap().before(f.getIfStatementAccess().getLeftCurlyBracketKeyword_12());
+		
+		c.setIndentationIncrement().after(f.getIfStatementAccess().getLeftCurlyBracketKeyword_18());
+		c.setLinewrap().after(f.getIfStatementAccess().getLeftCurlyBracketKeyword_18());
+		c.setIndentationDecrement().before(f.getIfStatementAccess().getLeftCurlyBracketKeyword_18());
+		c.setLinewrap().before(f.getIfStatementAccess().getLeftCurlyBracketKeyword_18());
+		*/
+		
+		//operacje matematyczne
+		for (Keyword kw : f.findKeywords(")")) {
+			c.setIndentationDecrement().before(kw);
+			c.setLinewrap().after(kw);
+		}		
+		c.setLinewrap().after(f.getArithmeticOperationRule());
+		c.setIndentationIncrement().after(f.getArithmeticOperationRule());
+		c.setLinewrap().after(f.getDOUBLERule());		
+		
+		//funkcje matematyczne
+		c.setLinewrap().after(f.getTwoArgFunctionRule());
+		c.setIndentationIncrement().after(f.getTwoArgFunctionRule());
+		c.setLinewrap().after(f.getOneArgFunctionRule());
+		c.setIndentationIncrement().after(f.getOneArgFunctionRule());
+		
+
+		c.setLinewrap().before(f.getML_COMMENTRule());
+		
 	}
 }

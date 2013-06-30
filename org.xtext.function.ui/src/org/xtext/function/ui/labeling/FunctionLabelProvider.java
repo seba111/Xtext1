@@ -5,6 +5,7 @@ package org.xtext.function.ui.labeling;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.xtext.xbase.ui.labeling.XbaseLabelProvider; 
+
  
 import com.google.inject.Inject;
 
