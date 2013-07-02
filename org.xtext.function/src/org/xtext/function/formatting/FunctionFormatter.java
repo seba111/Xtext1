@@ -41,17 +41,17 @@ public class FunctionFormatter extends AbstractDeclarativeFormatter {
 		
 		
 		// if
-		/*
+		
 		for (Keyword kw : f.findKeywords("if")) {
 			c.setIndentationIncrement().after(kw);
 			c.setLinewrap().after(kw);
 		}	
-		c.setIndentationIncrement().before(f.getIfStatementAccess().getRightParenthesisKeyword_10());
-		c.setIndentationIncrement().before(f.getIfStatementAccess().getRightParenthesisKeyword_15());
+		//c.setIndentationIncrement().before(f.getIfStatementAccess().getRightParenthesisKeyword_10());
+		//c.setIndentationIncrement().before(f.getIfStatementAccess().getRightParenthesisKeyword_15());
 		c.setIndentationIncrement().before(f.getIfStatementAccess().getRightParenthesisKeyword_21());
 		
-		c.setIndentationIncrement().before(f.getIfStatementAccess().getRightParenthesisKeyword_23());
-		c.setIndentationIncrement().before(f.getIfStatementAccess().getRightParenthesisKeyword_6());
+		//c.setIndentationIncrement().before(f.getIfStatementAccess().getRightParenthesisKeyword_23());
+		//c.setIndentationIncrement().before(f.getIfStatementAccess().getRightParenthesisKeyword_6());
 		c.setIndentationIncrement().before(f.getIfStatementAccess().getRightParenthesisKeyword_9());
 		
 		c.setIndentationIncrement().after(f.getIfStatementAccess().getLeftCurlyBracketKeyword_12());
@@ -63,7 +63,7 @@ public class FunctionFormatter extends AbstractDeclarativeFormatter {
 		c.setLinewrap().after(f.getIfStatementAccess().getLeftCurlyBracketKeyword_18());
 		c.setIndentationDecrement().before(f.getIfStatementAccess().getLeftCurlyBracketKeyword_18());
 		c.setLinewrap().before(f.getIfStatementAccess().getLeftCurlyBracketKeyword_18());
-		*/
+		
 		
 		//operacje matematyczne
 		for (Keyword kw : f.findKeywords(")")) {
